@@ -1,0 +1,114 @@
+.App {
+  text-align: center;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(62,237,217,1) 0%, rgba(81,175,255,1) 25%, rgba(78,183,255,1) 50%, rgba(81,175,255,1) 75%, rgba(62,237,217,1) 100%);
+  height: 100vh;
+  width: 100vw;
+  margin-top: 0vh;
+}
+
+.App table {
+  border-spacing: 0px;
+}
+
+.SurveyBuilder {
+  z-index: 10;
+}
+
+.SurveyTitleBlock {
+  position: relative;
+  height: 15vh;
+  margin-top: 20vh;
+  background-color: whitesmoke;
+  border-radius: 3%;
+  width: 45vw;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.384);
+}
+
+.MatrixLikert {
+  position: relative;
+  height: 35vh;
+  margin-top: 10vh;
+  background-color: whitesmoke;
+  border-radius: 3%;
+  width: 45vw;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.384);
+}
+
+.MatrixLikert input {
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   /* border-color: whitesmoke; */
+   /* border-style: none; */
+   /* background-color: whitesmoke; */
+   width: 20vw;
+   border-radius: 2%;
+   margin-top: 2vh;
+   margin-left: 1vw;
+}
+
+.MatrixLikert button {
+  margin: 2px
+}
+
+
+
+.SurveyTitleBlock input {
+   font-size: xx-large;
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   border-color: whitesmoke;
+   border-style: none;
+   background-color: whitesmoke;
+   width: 40vw;
+   border-radius: 2%;
+   margin-top: 2vh;
+   margin-left: 1vw;
+}
+
+.Navigation {
+  text-align: center;
+  background: rgba(245, 245, 245, 0.966);
+  position: fixed;
+  margin-top: 0vh;
+  height: 15vh;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.425);
+  width: 100vw;
+  z-index: 20;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
