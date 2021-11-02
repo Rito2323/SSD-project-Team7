@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../../../App.css';
-import ChangableList from './QuestionUtilities/ChangableList';
+import ChangeableList from './QuestionUtilities/ChangeableList';
 
 /**
   QuestionType: 1,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
@@ -29,7 +29,7 @@ function MatrixLikertEdit(props) {
         <br/>
         <textarea className="QuestionEditContentItem"/>
         <br/>
-        <ChangableList
+        <ChangeableList
             title="Scale for each option : "
             addButtonTitle="Add Scale"
             list={scalesState}
@@ -37,7 +37,7 @@ function MatrixLikertEdit(props) {
                 setScales([...list]);
             }}
         />
-        <ChangableList
+        <ChangeableList
             title="Options : "
             addButtonTitle="Add Option"
             list={optionsState}

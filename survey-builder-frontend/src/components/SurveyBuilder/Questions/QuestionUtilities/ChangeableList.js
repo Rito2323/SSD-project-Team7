@@ -1,11 +1,8 @@
 /***
  * Will take in a list of strings as input.
- * If the list is empty, it would show 3 blank rows by default.
  * Will also take in a function from the parent component to update the list in the parent.
  */
-//  import '../../../../App.css';
- import './ChangableList.css';
-
+ import './ChangeableList.css';
 
 /**
  * 
@@ -17,7 +14,7 @@
  * @returns 
  */
 
-function ChangableList(props) {
+function ChangeableList(props) {
     // Create each input tag based on the list.
     var list = [...props.list];
     var rows = [];
@@ -62,7 +59,7 @@ function ChangableList(props) {
     }
 
     return (
-        <div className="ChangableList">
+        <div className="ChangeableList">
             <p className="form-subtitle">{props.title}</p>
             <button onClick={(e)=>{
                 list.push("");
@@ -73,4 +70,4 @@ function ChangableList(props) {
     );
 }
 
-export default ChangableList;
+export default ChangeableList;
