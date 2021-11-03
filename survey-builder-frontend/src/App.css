@@ -107,7 +107,7 @@ button:hover {
   margin: 50px
 }
 
-.MatrixLikert {
+.MatrixLikert, .MultiSelectEdit {
   width:fit-content;
   margin-left: auto;
   margin-right: auto;
@@ -161,6 +161,14 @@ button:hover {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.SaveButton, .DiscardButton {
+  margin: 50px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.384);
+  background-color: whitesmoke;
 }
 
 .App-link {

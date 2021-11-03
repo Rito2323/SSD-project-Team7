@@ -22,7 +22,7 @@ import QuestionEdit from './QuestionEdit';
 */
 
 function QuestionEditListBlock(props) {
-  console.log(props);
+  
   var no_of_questions = props.Questions.length;
   var questions = [];
   for (var i = 0; i < no_of_questions; i++) {

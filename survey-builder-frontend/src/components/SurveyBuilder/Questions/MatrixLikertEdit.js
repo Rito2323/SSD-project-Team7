@@ -19,15 +19,35 @@ import ChangeableList from './QuestionUtilities/ChangeableList';
 */
 
 function MatrixLikertEdit(props) {
-  const [scalesState, setScales] = useState(["","",""]);
-  const [optionsState, setOptions] = useState(["","",""]);
+  var initialQuestionText = "";
+  var initialScales = ["","",""];
+  var initialOptions = ["","",""];
+
+  if(props["Options"] && props["Options"].length > 0) {
+    initialScales = [];
+    for(var i = 0; i < props["Options"][0]["levels"].length; i++) {
+      initialScales.push(props["Options"][0]["levels"][i]);//checking needed
+    }
+
+    initialOptions = [];
+    for(var i = 0; i < props["Options"].length; i++) {
+        initialOptions.push(props["Options"][i]["name"]);
+    }
+  }
+
+  if(props["QuestionText"]) {
+    initialQuestionText = props["QuestionText"];
+  }
+
+  const [scalesState, setScales] = useState(initialScales);
+  const [optionsState, setOptions] = useState(initialOptions);
 
   return (
     <div className="MatrixLikert">
         <br/>
         <label className="QuestionEditContentItem">Question Text:</label>
         <br/>
-        <textarea className="QuestionEditContentItem"/>
+        <textarea className="QuestionEditContentItem" value={initialQuestionText}/>
         <br/>
         <ChangeableList
             title="Scale for each option : "

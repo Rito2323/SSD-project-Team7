@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ChangeableList from './QuestionUtilities/ChangeableList';
 import '../../../App.css';
 
 /**
@@ -18,13 +19,31 @@ import '../../../App.css';
 */
 
 function MultiSelectEdit(props) {
+  var initialQuestionText = "";
+  var initialOptions = ["","",""];
+
+  if(props["Options"] && props["Options"].length > 0) {
+    initialOptions = [];
+    for(var i = 0; i < props["Options"].length; i++) {
+        initialOptions.push(props["Options"][i]["name"]);
+    }
+  }
+  const [optionsState, setOptions] = useState(initialOptions);
   return (
     <div className="MultiSelectEdit">
-        <p>Multi Select</p>
-        <label class="leftmargin">Question Text:</label>
-        <input></input>
         <br/>
-        <textarea/>
+        <label className="QuestionEditContentItem">Question Text:</label>
+        <br/>
+        <textarea className="QuestionEditContentItem" value={initialQuestionText}/>
+        <br/>
+        <ChangeableList
+            title="Options : "
+            addButtonTitle="Add option"
+            list={optionsState}
+            updateList={(list)=>{
+              setOptions([...list]);
+            }}
+        />
     </div>
   );
 }
