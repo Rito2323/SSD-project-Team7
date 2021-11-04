@@ -1,14 +1,14 @@
-.App {
+/* .App {
   text-align: center;
-  /* background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(62,237,217,1) 0%, rgba(81,175,255,1) 25%, rgba(78,183,255,1) 50%, rgba(81,175,255,1) 75%, rgba(62,237,217,1) 100%); */
+//  background: rgb(2,0,36);
+//  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(62,237,217,1) 0%, rgba(81,175,255,1) 25%, rgba(78,183,255,1) 50%, rgba(81,175,255,1) 75%, rgba(62,237,217,1) 100%);
   background: rgb(183,255,254);
   background: linear-gradient(90deg, rgba(183,255,254,0.5956583316920518) 0%, rgba(140,246,190,0.7189076314119398) 25%, rgba(127,210,219,0.648879620207458) 49%, rgba(140,246,190,0.6432773793110995) 75%, rgba(183,255,254,0.4051821412158614) 100%);
   height: 200vh;
   width: 100vw;
   overflow-y: scroll;
   margin-top: 0vh;
-}
+}*/
 
 .App table {
   border-spacing: 0px;
