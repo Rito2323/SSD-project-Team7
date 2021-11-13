@@ -76,6 +76,25 @@
   border-color: rgba(255, 255, 255, 0);
 }
 
+.add-button {
+  background-image: url("./icons/add.png");
+  background-color: rgba(245, 245, 245, 0);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-top: 2vh;
+  margin-left: 0.5vw;
+  border-color: rgba(255, 255, 255, 0);
+}
+
+.close-button{
+  width: 1.5vw;
+  height: 1.5vw;
+  margin-left: 2vw;
+  border-color: rgba(255, 255, 255, 0);
+}
+
 button:hover {
   border-color: rgb(0, 0, 0);
 }
@@ -110,6 +129,14 @@ button:hover {
 .MatrixLikert, .MultiSelectEdit {
   width:fit-content;
   margin-left: auto;
+  margin-right: auto;
+  font-size: calc(10px + 1vmin);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.MultiSelectPreview {
+  width:fit-content;
+  margin-left: 3vw;
   margin-right: auto;
   font-size: calc(10px + 1vmin);
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -163,7 +190,7 @@ button:hover {
   color: white;
 }
 
-.SaveButton, .DiscardButton {
+.SaveButton, .DiscardButton, .PreviewEditButton {
   margin: 50px;
   padding: 10px;
   border-radius: 8px;

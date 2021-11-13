@@ -1,7 +1,7 @@
 import '../../../App.css';
 import TextBasedEdit from './TextBasedEdit';
 import SingleSelectEdit from './SingleSelectEdit';
-import MultiSelectEdit from './MultiSelectEdit';
+import MultiSelectPreview from './MultiSelectPreview';
 import MatrixLikertEdit from './MatrixLikertEdit';
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form'
@@ -21,7 +21,7 @@ import Form from 'react-bootstrap/Form'
     ]
 */
 
-function QuestionEdit(props) {
+function QuestionPreview(props) {
   let question;
   const [qType, setQType] = useState(props.QuestionType);
 
@@ -30,18 +30,18 @@ function QuestionEdit(props) {
   } else if (qType == 2) {
     question = <SingleSelectEdit {...props} />;
   } else if (qType == 3) {
-    question = <MultiSelectEdit {...props} />;
+    question = <MultiSelectPreview {...props} />;
   } else if (qType == 4) {
     question = <MatrixLikertEdit {...props} />;
   }
   var options = ["TextBased", "SingleSelect", "MultiSelect", "MatrixLikert"];
   return (
     <div className="QuestionEdit">
-      <div className="QuestionTypeBox">
+      {/* <div className="QuestionTypeBox">
       <br/>
       <label for="qTypeLabel" className="topmargin">Question Type:</label>
       <br/>
-      {/* <select name="qType" id="qTypeSelect" value={options[qType - 1]} onChange={(e) => {
+      <select name="qType" id="qTypeSelect" value={options[qType - 1]} onChange={(e) => {
         setQType(e.target.selectedIndex + 1);
         document.getElementById("qTypeSelect").value = options[e.target.selectedIndex];
       }}>
@@ -49,7 +49,7 @@ function QuestionEdit(props) {
         <option value={options[1]}>Single Select</option>
         <option value={options[2]}>Multi Select</option>
         <option value={options[3]}>Matrix Likert</option>
-      </select> */}
+      </select>
       <Form.Select aria-label="Default select example" name="qType" id="qTypeSelect"  value={options[qType - 1]} onChange={(e) => {
         setQType(e.target.selectedIndex + 1);
         document.getElementById("qTypeSelect").value = options[e.target.selectedIndex];
@@ -59,10 +59,10 @@ function QuestionEdit(props) {
         <option value={options[2]}>Multi Select</option>
         <option value={options[3]}>Matrix Likert</option>
     </Form.Select>
-      </div>
+      </div> */}
       {question}
     </div>
   );
 }
 
-export default QuestionEdit;
+export default QuestionPreview;

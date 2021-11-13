@@ -1,6 +1,5 @@
 import '../../../App.css';
-import MultiSelectEdit from './MultiSelectEdit';
-import QuestionEdit from './QuestionEdit';
+import QuestionPreview from './QuestionPreview';
 
 /**
  *Questions: [
@@ -40,21 +39,12 @@ const getDefaultQuestion = ()=>{
     }
 }
 
-function QuestionEditListBlock(props) {
+function PreviewQuestionListBlock(props) {
   var no_of_questions = props.Questions.length;
   var questions = [];
   console.log(props.Questions)
   for (var i = 0; i < no_of_questions; i++) {
-    questions.push(<>
-    <QuestionEdit key={i} {...props.Questions[i]}/>
-    <button id={"add_"+i} key={i} className="add-button" onClick={(e)=>{
-      const questions_updated = props.Questions;
-      const default_question = getDefaultQuestion()
-      questions_updated.splice(parseInt(e.target.id.substring(4), 10)+1, 0, default_question);
-      props.setQuestionData({Questions:questions_updated});
-    }}></button>
-    </>
-    );
+    questions.push(<QuestionPreview key={i} {...props.Questions[i]}/>);
   }
   return (
     <div className="QuestionEditListBlock">
@@ -63,4 +53,4 @@ function QuestionEditListBlock(props) {
   );
 }
 
-export default QuestionEditListBlock;
+export default PreviewQuestionListBlock;
