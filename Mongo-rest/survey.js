@@ -35,7 +35,7 @@ const Question = new mongoose.Schema({
       required: true,
     },
 
-    QuesionNo: {
+    QuestionNo: {
         type: Number,
         required: true,
       },
@@ -79,7 +79,7 @@ const Surveys = new mongoose.Schema({
 });
 
 const Answer = new mongoose.Schema({
-    QuesionNo: {
+    QuestionNo: {
         type: Number,
         required: true,
       },
