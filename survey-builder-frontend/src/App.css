@@ -1,9 +1,12 @@
 .App {
   text-align: center;
-  background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(62,237,217,1) 0%, rgba(81,175,255,1) 25%, rgba(78,183,255,1) 50%, rgba(81,175,255,1) 75%, rgba(62,237,217,1) 100%);
-  height: 100vh;
+  /* background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(62,237,217,1) 0%, rgba(81,175,255,1) 25%, rgba(78,183,255,1) 50%, rgba(81,175,255,1) 75%, rgba(62,237,217,1) 100%); */
+  background: rgb(183,255,254);
+  background: linear-gradient(90deg, rgba(183,255,254,0.5956583316920518) 0%, rgba(140,246,190,0.7189076314119398) 25%, rgba(127,210,219,0.648879620207458) 49%, rgba(140,246,190,0.6432773793110995) 75%, rgba(183,255,254,0.4051821412158614) 100%);
+  height: 200vh;
   width: 100vw;
+  overflow-y: scroll;
   margin-top: 0vh;
 }
 
@@ -20,23 +23,125 @@
   height: 15vh;
   margin-top: 20vh;
   background-color: whitesmoke;
-  border-radius: 3%;
+  border-radius: 2%;
   width: 45vw;
   margin-left: auto;
   margin-right: auto;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.384);
 }
 
-.MatrixLikert {
+.QuestionEdit {
   position: relative;
-  height: 35vh;
-  margin-top: 10vh;
+  height: fit-content;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 5vh;
   background-color: whitesmoke;
-  border-radius: 3%;
+  border-radius: 2%;
   width: 45vw;
   margin-left: auto;
   margin-right: auto;
+  text-align: left;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.384);
+}
+
+.down-button {
+  background-image: url("./icons/down.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1.5vw;
+  height: 1.5vw;
+  margin-left: 0.5vw;
+  border-color: rgba(255, 255, 255, 0);
+}
+
+.up-button {
+  background-image: url("./icons/up.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1.5vw;
+  height: 1.5vw;
+  margin-left: 0.5vw;
+  border-color: rgba(255, 255, 255, 0);
+}
+
+.del-button {
+  background-image: url("./icons/delete.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1.5vw;
+  height: 1.5vw;
+  margin-left: 0.5vw;
+  border-color: rgba(255, 255, 255, 0);
+}
+
+.add-button {
+  background-image: url("./icons/add.png");
+  background-color: rgba(245, 245, 245, 0);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-top: 2vh;
+  margin-left: 0.5vw;
+  border-color: rgba(255, 255, 255, 0);
+}
+
+.close-button{
+  width: 1.8vw;
+  height: 1.8vw;
+  margin-left: 2vw;
+  float: right;
+  border-color: rgba(255, 255, 255, 0);
+}
+
+button:hover {
+  border-color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.QuestionTypeBox {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+.QuestionTypeBox select {
+  width: 40vw;
+  height: 3.5vh;
+}
+
+.QuestionEditContentMaxWidth {
+  max-width: 40vw;
+}
+
+.QuestionEditContentItem {
+  width: 40vw;
+  max-width: 40vw;
+  max-height: 50vh;
+  overflow-y: scroll;
+  height: 3.5vh;
+  margin-top: 2vh;
+}
+
+.leftmargin {
+  margin: 50px
+}
+
+.MatrixLikert, .MultiSelectEdit {
+  width:fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: calc(10px + 1vmin);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.MultiSelectPreview {
+  width:fit-content;
+  margin-left: 3vw;
+  margin-right: auto;
+  font-size: calc(10px + 1vmin);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .MatrixLikert input {
@@ -47,14 +152,11 @@
    width: 20vw;
    border-radius: 2%;
    margin-top: 2vh;
-   margin-left: 1vw;
 }
 
 .MatrixLikert button {
   margin: 2px
 }
-
-
 
 .SurveyTitleBlock input {
    font-size: xx-large;
@@ -63,7 +165,7 @@
    border-style: none;
    background-color: whitesmoke;
    width: 40vw;
-   border-radius: 2%;
+   border-radius: 2px;
    margin-top: 2vh;
    margin-left: 1vw;
 }
@@ -73,20 +175,14 @@
   background: rgba(245, 245, 245, 0.966);
   position: fixed;
   margin-top: 0vh;
-  height: 15vh;
+  height: 12vh;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.425);
   width: 100vw;
   z-index: 20;
 }
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.questionCheckBox {
+  margin-right: 10px;
 }
 
 .App-header {
@@ -98,6 +194,14 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.SaveButton, .DiscardButton, .PreviewEditButton {
+  margin: 50px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.384);
+  background-color: whitesmoke;
 }
 
 .App-link {

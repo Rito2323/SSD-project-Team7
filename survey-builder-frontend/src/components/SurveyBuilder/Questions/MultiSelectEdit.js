@@ -1,0 +1,69 @@
+import React, { useState } from 'react';
+import ChangeableList from './QuestionUtilities/ChangeableList';
+import '../../../App.css';
+
+/**
+  QuestionType: 1,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
+  QuesionNo: 1, // Number
+  QuestionText: "", //string
+  Options: [ // list of Option
+      {
+        name: "option1",
+        levels: [""]
+      },
+      {
+        name: "option2",
+        levels: [""]
+      }
+    ]
+*/
+
+function MultiSelectEdit(props) {
+  var initialOptions = ["","",""];
+
+  if(props["Options"] && props["Options"].length > 0) {
+    initialOptions = [];
+    for(var i = 0; i < props["Options"].length; i++) {
+        initialOptions.push(props["Options"][i]["name"]);
+    }
+  }
+  // const [optionsState, setOptions] = useState(initialOptions);
+  return (
+    <div className="MultiSelectEdit">
+        <br/>
+        <label className="QuestionEditContentItem">Question Text:</label>
+        <br/>
+        <textarea className="QuestionEditContentItem" value={props.QuestionText} onChange={(e)=>{
+          var question = getQuestionFromProps(props);
+          question.QuestionText = e.target.value;
+          props.updateQuestion(question, question.QuesionNo - 1);
+        }}/>
+        <br/>
+        <ChangeableList
+            title="Options : "
+            addButtonTitle="Add option"
+            list={initialOptions}
+            updateList={(list)=>{
+              var question = getQuestionFromProps(props);
+              question.Options = list.map((option)=>{return {
+                name : option,
+                levels : [""] 
+              }})
+              // setOptions([...list]);
+              props.updateQuestion(question, question.QuesionNo - 1);
+            }}
+        />
+    </div>
+  );
+}
+
+const getQuestionFromProps = (props) => {
+  return  {
+    QuestionType: props.QuestionType,
+    QuesionNo: props.QuesionNo,
+    QuestionText: props.QuestionText,
+    Options: props.Options
+  }
+}
+
+export default MultiSelectEdit;
