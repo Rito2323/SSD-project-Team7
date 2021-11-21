@@ -67,6 +67,7 @@ function MatrixLikertEdit(props) {
             list={scalesState}
             updateList={(list)=>{
                 setScales([...list]);
+
             }}
         />
         <ChangeableList

@@ -34,32 +34,8 @@ function QuestionPreview(props) {
   } else if (qType == 4) {
     question = <MatrixLikertEdit {...props} />;
   }
-  var options = ["TextBased", "SingleSelect", "MultiSelect", "MatrixLikert"];
   return (
     <div className="QuestionEdit">
-      {/* <div className="QuestionTypeBox">
-      <br/>
-      <label for="qTypeLabel" className="topmargin">Question Type:</label>
-      <br/>
-      <select name="qType" id="qTypeSelect" value={options[qType - 1]} onChange={(e) => {
-        setQType(e.target.selectedIndex + 1);
-        document.getElementById("qTypeSelect").value = options[e.target.selectedIndex];
-      }}>
-        <option value={options[0]}>Text Based</option>
-        <option value={options[1]}>Single Select</option>
-        <option value={options[2]}>Multi Select</option>
-        <option value={options[3]}>Matrix Likert</option>
-      </select>
-      <Form.Select aria-label="Default select example" name="qType" id="qTypeSelect"  value={options[qType - 1]} onChange={(e) => {
-        setQType(e.target.selectedIndex + 1);
-        document.getElementById("qTypeSelect").value = options[e.target.selectedIndex];
-      }}>
-        <option value={options[0]}>Text Based</option>
-        <option value={options[1]}>Single Select</option>
-        <option value={options[2]}>Multi Select</option>
-        <option value={options[3]}>Matrix Likert</option>
-    </Form.Select>
-      </div> */}
       {question}
     </div>
   );

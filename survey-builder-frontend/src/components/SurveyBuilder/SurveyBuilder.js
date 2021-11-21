@@ -5,7 +5,6 @@ import React, {useState} from "react";
 import QuestionEditListBlock from './Questions/QuestionEditListBlock';
 import PreviewQuestionListBlock from './Questions/PreviewQuestionListBlock';
 
-
 const getData = () => {
   return {
     Questions: [
@@ -42,15 +41,16 @@ const getData = () => {
   ]}
 }
 
-const updateData = () => {
-  // Send update request 
+const updateQuestionDataInServer = () => {
+  // Send update request
 }
 
 function SurveyBuilder(props) {
   const [value, setValue] = useState("Untitled Form");
   const [questionData, setQuestionData] = useState(getData());
   const [mode, setMode] = useState("EDIT");
-
+  console.log("Inside SurveyBuilder")
+  console.log(questionData)
   // var questionData = ;
   return (
     <div className="App SurveyBuilder">
@@ -58,7 +58,7 @@ function SurveyBuilder(props) {
         <SurveyTitleBlock titleVal={value} handleTitleChange={
           (e) => setValue(e.target.value)
         }/>
-        <QuestionEditListBlock {...questionData} setQuestionData={setQuestionData}/> </>
+        <QuestionEditListBlock {...questionData} setQuestionData={setQuestionData}/></>
         : <>
           <PreviewSurveyTitleBlock titleVal={value} handleTitleChange={
           (e) => setValue(e.target.value)
@@ -73,7 +73,7 @@ function SurveyBuilder(props) {
             setMode("EDIT")
           }
         }}>{mode == "PREVIEW" ? "EDIT" : "PREVIEW"}</button>
-        <button className="SaveButton" onClick={() => {updateData()}}>SAVE</button>
+        <button className="SaveButton" onClick={() => {updateQuestionDataInServer()}}>SAVE</button>
         <button className="DiscardButton">DISCARD</button>
     </div>
   );

@@ -19,17 +19,38 @@ import '../../../App.css';
     ]
 */
 
-function MultiSelectPreview(props) {
+function MultiLikertPreview(props) {
   var initialQuestionText = props["QuestionText"];
   var initialOptions = ["","",""];
 
+//   if(props["Options"] && props["Options"].length > 0) {
+//     initialOptions = [];
+//     for(var i = 0; i < props["Options"].length; i++) {
+//         initialOptions.push(props["Options"][i]["name"]);
+//     }
+//   }
+
+  rows = [];
+  scales = [];
   if(props["Options"] && props["Options"].length > 0) {
-    initialOptions = [];
+    scales = props["Options"][0][levels];
     for(var i = 0; i < props["Options"].length; i++) {
-        initialOptions.push(props["Options"][i]["name"]);
-    }
+        options = []
+        for(var j=0; j < props["Options"][i]["levels"].length; i++) {
+            options.push(<td>
+                <input type="radio" value={props["Options"][i]["levels"][j]}/>
+            </td>)
+        }
+        rows.push(<tr>
+            <td>
+                <label name={"option" + i + 1}>{props["Options"][i]["name"]}</label>
+            </td>
+            {options}
+        </tr>)
+    } 
   }
-  const optionsElements = initialOptions.map((option)=>{
+
+  const selectionElements = initialOptions.map((option)=>{
     return <>
         <input className="questionCheckBox" type="checkbox" id="option1" name="option" value={option}/>
         <label className="questionOptionLabel" for="option">{option}</label><br/>
@@ -43,7 +64,7 @@ function MultiSelectPreview(props) {
         <br/> */}
         <p>{props.QuesionNo}. {initialQuestionText}</p>
         <br/>
-        {optionsElements}
+        {selectionElements}
         {/* <InputGroup className="mb-3">
             <InputGroup.Checkbox aria-label="Checkbox for following text input" />
             <FormControl aria-label="Text input with checkbox" />
@@ -60,4 +81,4 @@ function MultiSelectPreview(props) {
   );
 }
 
-export default MultiSelectPreview;
+export default MultiLikertPreview;
