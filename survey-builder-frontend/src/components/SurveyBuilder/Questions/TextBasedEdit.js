@@ -20,7 +20,10 @@ import '../../../App.css';
 function TextBasedEdit(props) {
   return (
     <div className="TextBasedEdit">
-       <p>TextBasedEdit Question </p>
+      <div class="innerCard">
+          <div class="Question-heading">Question:</div>
+          <div class="Question-text"><textarea id="textQuestion"></textarea></div>
+      </div>
     </div>
   );
 }

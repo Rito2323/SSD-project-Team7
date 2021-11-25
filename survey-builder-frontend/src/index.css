@@ -1,7 +1,6 @@
 html {
 	font-size: 40%;
 	scroll-behavior: smooth;
-  overflow-y: hidden;
 }
 
 body {
@@ -163,14 +162,14 @@ code {
 }
 
 .banner button {
-  width: 28rem;
+  width: 37rem;
   height: 12rem;
   background-color: transparent;
   border: solid #c29525 2px;
   border-radius: 3px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Oxygen', sans-serif;
   font-size: 3rem;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   color: #fff;
   margin-left: 9rem;
   margin-right: 8rem;
@@ -190,6 +189,7 @@ code {
   opacity: 0.5;
   transition: 450ms;
   font-size: 3.5rem;
+  margin-top: -1px;
 }
 
 @keyframes bannerentry {
