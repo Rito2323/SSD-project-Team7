@@ -47,7 +47,7 @@ function MultiLikertPreview(props) {
             </td>
             {options}
         </tr>)
-    } 
+    }
   }
 
   const selectionElements = initialOptions.map((option)=>{

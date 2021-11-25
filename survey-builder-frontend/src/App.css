@@ -96,6 +96,32 @@
   border-color: rgba(255, 255, 255, 0);
 }
 
+.survey-tile {
+  width: 300px;
+  height: 300px;
+  margin: 0.5vw;
+  background-color: white;
+  border-radius: 2%;
+  position: relative
+}
+
+.survey-tile:hover {
+  width: 300px;
+  height: 300px;
+  margin: 0.5vw;
+  background-color: rgb(99, 211, 255);
+  border-radius: 2%;
+  position: relative
+}
+
+.survey-title-image {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  margin-left: 2vw;
+  margin-right: auto;
+}
+
 button:hover {
   border-color: rgb(0, 0, 0);
   cursor: pointer;
@@ -179,6 +205,14 @@ button:hover {
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.425);
   width: 100vw;
   z-index: 20;
+}
+
+.survey-tile-list {
+    margin-top: 15vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style-type: none;
 }
 
 .questionCheckBox {
