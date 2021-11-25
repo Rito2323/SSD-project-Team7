@@ -16,7 +16,7 @@
 
 .SurveyBuilder {
   padding-top: 12vh;
-  background-image: url("IIITsunset.jpg");
+  background-image: url("heron.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -27,31 +27,33 @@
   position: relative;
   height: 15vh;
 /*  margin-top: 20vh;*/
-  background-color: white;
+  background-color: rgb(200, 200, 200, 0.6);
   width: 45vw;
   margin-left: auto;
   margin-right: auto;
   box-shadow: 0px 0px 20px 0 #0000002c;
+  border-radius: 3px;
 }
 
 .SurveyTitleBlock:focus-within {
-  box-shadow: 0px 0px 15px 0 rgba(108, 209, 240, 0.7);
-/*  border-left: rgb(89, 189, 247) solid 4px;*/
+  box-shadow: 0px 0px 15px 0 white;
 }
 
 .QuestionEdit {
   position: relative;
+  width: 45vw;
   height: fit-content;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 30px;
+  padding-bottom: 40px;
   margin-top: 8vh;
-  background-color: white;
-  width: 45vw;
+  background-color: rgb(200, 200, 200, 0.6);
   margin-left: auto;
   margin-right: auto;
   text-align: left;
   box-shadow: 0px 0px 20px 0 #0000002c;
+  border-radius: 3px;
+  color: #fff;
 }
 
 .down-button {
@@ -124,30 +126,34 @@ button:hover {
 }
 
 .QuestionEdit:focus-within {
-  box-shadow: 0px 0px 15px 0 rgb(89, 189, 247, 0.7);
+  box-shadow: 0px 0px 20px 0 white;
 }
 
 
 .MatrixLikert input {
-   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   font-family: Geneva;
    width: 20vw;
    border-radius: 2%;
    margin-top: 2vh;
+   background-color: #eee;
 }
 
 .MatrixLikert button {
-  margin: 2px
+  margin: 2px;
+  background-color: #eee;
+  border-style: none;
 }
 
 .SurveyTitleBlock input {
    font-size: xx-large;
-   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-   border-color: white;
+   font-family: Geneva;
    border-style: none;
-   background-color: white;
+   background-color: rgb(238, 238, 238, 0);
    width: 40vw;
-   margin-top: 2vh;
-   margin-left: 1vw;
+   margin-top: 3.5vh;
+   margin-left: 2vw;
+   color: #fff;
+   text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);;
 }
 
 .SurveyTitleBlock input:focus {
@@ -181,8 +187,9 @@ button:hover {
   margin-left: 350px;
   padding: 10px;
   border-radius: 8px;
+  border-style: none;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.384);
-  background-color: white;
+  background-color: rgb(200, 200, 200, 0.6);
 }
 
 .App-link {
