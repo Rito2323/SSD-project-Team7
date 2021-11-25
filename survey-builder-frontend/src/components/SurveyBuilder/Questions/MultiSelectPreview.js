@@ -31,8 +31,28 @@ function MultiSelectPreview(props) {
   }
   const optionsElements = initialOptions.map((option)=>{
     return <>
-        <input className="questionCheckBox" type="checkbox" id="option1" name="option" value={option}/>
-        <label className="questionOptionLabel" for="option">{option}</label><br/>
+        <input className="questionCheckBox" type="checkbox" name={props.QuestionText} value={option} onClick={(e)=>{
+          if (props.onValueChange != undefined) {
+              var ques = getQuestionFromProps(props);
+              var key = getQuestionHeaderKey(ques);
+              var checkBoxes = document.getElementsByName(props.QuestionText);
+              var j=0;
+              var ans = "";
+              for (var k = 0; k<checkBoxes.length; k++) {
+                if(checkBoxes[k].checked) {
+                  if(j!=0) {
+                    ans = ans + ",";
+                  }
+                  ans = ans + checkBoxes[k].value;
+                  j = j + 1;
+                }
+              }
+              // console.log(e.target.value);
+              // console.log(e.target.checked);
+              props.onValueChange(key, ans);
+          }
+        }}/>
+        <label className="questionOptionLabel" for={props.QuestionText}>{option}</label><br/>
        </>
     })
   const [optionsState, setOptions] = useState(initialOptions);
@@ -58,6 +78,27 @@ function MultiSelectPreview(props) {
         /> */}
     </div>
   );
+}
+
+const getQuestionHeaderKey = (question, optionName = undefined) => {
+  //TODO : check for error.
+  // const question = questions[questionNo - 1];
+  let quesStr = "";
+  if (optionName == undefined) {
+      quesStr = question["QuestionText"];
+  } else {
+      quesStr = question["QuestionText"] + "-" + optionName;
+  }
+  return quesStr;
+}
+
+const getQuestionFromProps = (props) => {
+  return  {
+    QuestionType: props.QuestionType,
+    QuestionNo: props.QuestionNo,
+    QuestionText: props.QuestionText,
+    Options: props.Options
+  }
 }
 
 export default MultiSelectPreview;

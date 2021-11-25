@@ -19,6 +19,17 @@ import '../../../App.css';
     ]
 */
 
+const getQuestionHeaderKey = (question, optionName = undefined) => {
+    //TODO : check for error.
+    let quesStr = "";
+    if (optionName == undefined) {
+        quesStr = question["QuestionText"];
+    } else {
+        quesStr = question["QuestionText"] + "-" + optionName;
+    }
+    return quesStr;
+}
+
 function TextBasedPreview(props) {
   var initialQuestionText = props["QuestionText"];
   var initialOptions = ["","",""];
@@ -29,8 +40,12 @@ function TextBasedPreview(props) {
         <br/> */}
         <p>{props.QuestionNo}. {initialQuestionText}</p>
         <br/>
-        <input type="text" onChange={()=>{
-
+        <input type="text" onChange={(e)=>{
+            if(props.onValueChange != undefined) {
+                var ques = getQuestionFromProps(props);
+                var key = getQuestionHeaderKey(ques);
+                props.onValueChange(key, e.target.value);
+            }
         }}></input>
         {/* <InputGroup className="mb-3">
             <InputGroup.Checkbox aria-label="Checkbox for following text input" />
@@ -47,5 +62,14 @@ function TextBasedPreview(props) {
     </div>
   );
 }
+
+const getQuestionFromProps = (props) => {
+    return  {
+      QuestionType: props.QuestionType,
+      QuestionNo: props.QuestionNo,
+      QuestionText: props.QuestionText,
+      Options: props.Options
+    }
+  }
 
 export default TextBasedPreview;
