@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ChangeableList from './QuestionUtilities/ChangeableList';
 import '../../../App.css';
 
 /**
@@ -18,9 +19,32 @@ import '../../../App.css';
 */
 
 function SingleSelectEdit(props) {
+  var initialQuestionText = "";
+  var initialOptions = ["","",""];
+
+  if(props["Options"] && props["Options"].length > 0) {
+    initialOptions = [];
+    for(var i = 0; i < props["Options"].length; i++) {
+        initialOptions.push(props["Options"][i]["name"]);
+    }
+  }
+  const [optionsState, setOptions] = useState(initialOptions);
+  
   return (
     <div className="SingleSelectEdit">
-        <p>Single Select</p>
+        <br/>
+        <label className="QuestionEditContentItem">Question Text:</label>
+        <br/>
+        <textarea className="QuestionEditContentItem" value={initialQuestionText}/>
+        <br/>
+        <ChangeableList
+            title="Options : "
+            addButtonTitle="Add option"
+            list={optionsState}
+            updateList={(list)=>{
+              setOptions([...list]);
+            }}
+        />
     </div>
   );
 }

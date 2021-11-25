@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const Router = require("./routes")
 
 const app = express();
+const cors = require('cors');
+
+app.use(cors({origin: '*'}));
 
 app.use(express.json());
 

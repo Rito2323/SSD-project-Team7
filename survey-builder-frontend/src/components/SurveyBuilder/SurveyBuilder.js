@@ -1,11 +1,26 @@
 import '../../App.css';
 import SurveyTitleBlock from './SurveyTitleBlock';
 import PreviewSurveyTitleBlock from './PreviewSurveyTitleBlock';
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import QuestionEditListBlock from './Questions/QuestionEditListBlock';
 import PreviewQuestionListBlock from './Questions/PreviewQuestionListBlock';
+import SurveyTile from '../Utility/SurveyTile';
 
-const getData = () => {
+
+const getAllSurveys = async () => {
+  var response = await fetch('http://localhost:3000/surveys')
+  var surveys = await response.json();
+  console.log("SURVEYS FETCHED : ");
+  console.log(surveys);
+  return surveys;
+}
+
+const getData = async () => {
+
+  // var response = await fetch('http://localhost:3000/surveys')
+  // var question = await response.json();
+
+  // return {Questions: question["Questions"]}
   return {
     Questions: [
     {
@@ -41,20 +56,83 @@ const getData = () => {
   ]}
 }
 
-const updateQuestionDataInServer = () => {
+const updateQuestionDataInServer = (questionData) => {
   // Send update request
+  fetch('http://localhost:3000/update/survey/5', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      SurveyNo : "5",
+      SurveyTitle : "IIITH zoom call meetings",
+      CreatedBy : "surveydeveloper2@iiit.ac.in",
+      Questions : questionData["Questions"]
+    })
+  })
+}
+
+const getNewSurveyNo = (surveys) => {
+    var max = 0;
+    for(var i = 0; i < surveys.length; i++) {
+      if(surveys[i].SurveyNo > max) {
+        max = surveys[i].SurveyNo;
+      }
+    }
+    return (max + 1);
 }
 
 function SurveyBuilder(props) {
   const [value, setValue] = useState("Untitled Form");
-  const [questionData, setQuestionData] = useState(getData());
+  const [questionData, setQuestionData] = useState({Questions: []});
+  const [surveys, setSurveys] = useState([]);
   const [mode, setMode] = useState("EDIT");
+  const [isSurveySelected, setIsSurveySelected] = useState(false);
+  const [currentSurveyNo, setCurrentSurveyNo] = useState(0);
+
+  const userName = "user1@students.iiit.ac.in";
+  useEffect(() => {
+  if (surveys.length == 0) {
+      getDataFromBackEnd();
+    }
+  }, []);
+
+  const getDataFromBackEnd = async () => {
+    var surveyData = await getAllSurveys();
+    setSurveys(surveyData);
+    var data = await getData();
+    console.log(data);
+    setQuestionData(data);
+  }
+
+  const newSurveyNo = getNewSurveyNo(surveys);
+
+  const surveyTiles = [];
+
+  const createSurveyTile = <SurveyTile newSurveyNo={newSurveyNo}
+  setIsSurveySelected={setIsSurveySelected}
+  setQuestionData={setQuestionData}/>
+  surveyTiles.push(<li>{createSurveyTile}</li>)
+
+  for(var i = 0; i < surveys.length; i++) {
+    const surveyTileComponent = <SurveyTile {...surveys[i]}
+    setIsSurveySelected={setIsSurveySelected}
+    setQuestionData={setQuestionData}/>;
+    surveyTiles.push(<li>{surveyTileComponent}</li>)
+  }
+
   console.log("Inside SurveyBuilder")
   console.log(questionData)
   // var questionData = ;
   return (
     <div className="App SurveyBuilder">
-       {mode == "EDIT" ? <>
+       {!isSurveySelected ? <>
+        <ul className="survey-tile-list">
+          {surveyTiles}
+        </ul>
+       </> : 
+       <>
+        {mode == "EDIT" ? <>
         <SurveyTitleBlock titleVal={value} handleTitleChange={
           (e) => setValue(e.target.value)
         }/>
@@ -73,8 +151,11 @@ function SurveyBuilder(props) {
             setMode("EDIT")
           }
         }}>{mode == "PREVIEW" ? "EDIT" : "PREVIEW"}</button>
-        <button className="SaveButton" onClick={() => {updateQuestionDataInServer()}}>SAVE</button>
-        <button className="DiscardButton">DISCARD</button>
+        <button className="SaveButton" onClick={(e) => {updateQuestionDataInServer(questionData)}}>SAVE</button>
+        <button className="DiscardButton" onClick={(e)=> {
+          setIsSurveySelected(false);
+        }}>DISCARD</button>
+       </>}
     </div>
   );
 }

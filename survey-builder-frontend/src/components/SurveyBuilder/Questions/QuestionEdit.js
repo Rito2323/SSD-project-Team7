@@ -59,7 +59,7 @@ function QuestionEdit(props) {
   }
   var options = ["TextBased", "SingleSelect", "MultiSelect", "MatrixLikert"];
   return (
-    <div className="QuestionEdit">
+    <div className="QuestionEdit" tabIndex = "-1">
       <div className="QuestionTypeBox">
         <br />
         <p>{props.QuesionNo}<button onClick={(e)=>{
