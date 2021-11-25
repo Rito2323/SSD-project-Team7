@@ -3,7 +3,7 @@ import '../../App.css';
 
 // Question: {
 //     QuestionType: 1,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-//     QuesionNo: 1, // Number
+//     QuestionNo: 1, // Number
 //     QuestionText: "", //string
 //     Options: [ // list of Option
 //         {
@@ -25,26 +25,35 @@ import '../../App.css';
 //     Questions : []  // list of question
 //    }
 
-const getNewSurvey= (newSurveyNo) =>{
+const getNewSurvey= (newSurveyNo, user) =>{
+    let date = new Date()
+    // let day = date.getDate();
+    // let month = date.getMonth()+1;
+    // let year = date.getFullYear();
+    
+    // let fullDate = `${day}.${month}.${year}.`;
     return ({
             SurveyNo: newSurveyNo, // Number
-            SurveyTitle: "", // string
-            CreatedBy: "", // string
-            CreationDate: "",
+            SurveyTitle: "Untitled Form", // string
+            CreatedBy: user, // string
+            CreationDate: date,
             Questions : []  // list of question
            })
 }
 
 function SurveyTile(props) {
-    var survey = props;
+    var survey = props.survey;
+    var isNewSurvey = false;
     if(props.newSurveyNo != undefined) {
-        survey = getNewSurvey(props.newSurveyNo)
+        survey = getNewSurvey(props.newSurveyNo, props.currentUser)
+        isNewSurvey = true;
     }
 
     return (<button className="survey-tile" onClick={(e)=>{
         props.setIsSurveySelected(true);
         props.setQuestionData({Questions: survey.Questions});
-        props.setCurrentSurveyNo(survey.SurveyNo);
+        props.setCurrentSurvey(survey);
+        props.setIsNewSurvey(isNewSurvey);
     }}>
         <table>
             <tr>

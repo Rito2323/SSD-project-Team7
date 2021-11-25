@@ -28,8 +28,6 @@ const sample =[
         "Q4":"A8"
       }  
     }
-    
-    
   ]
   
 

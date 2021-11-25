@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import ChangeableList from './QuestionUtilities/ChangeableList';
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
 import '../../../App.css';
 
 /**
@@ -18,35 +19,33 @@ import '../../../App.css';
     ]
 */
 
-function SingleSelectEdit(props) {
-  var initialQuestionText = "";
+function TextBasedPreview(props) {
+  var initialQuestionText = props["QuestionText"];
   var initialOptions = ["","",""];
-
-  if(props["Options"] && props["Options"].length > 0) {
-    initialOptions = [];
-    for(var i = 0; i < props["Options"].length; i++) {
-        initialOptions.push(props["Options"][i]["name"]);
-    }
-  }
-  const [optionsState, setOptions] = useState(initialOptions);
-  
   return (
-    <div className="SingleSelectEdit">
-        <br/>
+    <div className="MultiSelectPreview">
+        {/* <br/>
         <label className="QuestionEditContentItem">Question Text:</label>
+        <br/> */}
+        <p>{props.QuestionNo}. {initialQuestionText}</p>
         <br/>
-        <textarea className="QuestionEditContentItem" value={initialQuestionText}/>
-        <br/>
-        <ChangeableList
+        <input type="text" onChange={()=>{
+
+        }}></input>
+        {/* <InputGroup className="mb-3">
+            <InputGroup.Checkbox aria-label="Checkbox for following text input" />
+            <FormControl aria-label="Text input with checkbox" />
+        </InputGroup> */}
+        {/* <ChangeableList
             title="Options : "
             addButtonTitle="Add option"
             list={optionsState}
             updateList={(list)=>{
               setOptions([...list]);
             }}
-        />
+        /> */}
     </div>
   );
 }
 
-export default SingleSelectEdit;
+export default TextBasedPreview;

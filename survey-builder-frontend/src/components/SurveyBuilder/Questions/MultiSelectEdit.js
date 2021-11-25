@@ -4,7 +4,7 @@ import '../../../App.css';
 
 /**
   QuestionType: 1,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-  QuesionNo: 1, // Number
+  QuestionNo: 1, // Number
   QuestionText: "", //string
   Options: [ // list of Option
       {
@@ -36,7 +36,7 @@ function MultiSelectEdit(props) {
         <textarea className="QuestionEditContentItem" value={props.QuestionText} onChange={(e)=>{
           var question = getQuestionFromProps(props);
           question.QuestionText = e.target.value;
-          props.updateQuestion(question, question.QuesionNo - 1);
+          props.updateQuestion(question, question.QuestionNo - 1);
         }}/>
         <br/>
         <ChangeableList
@@ -50,7 +50,7 @@ function MultiSelectEdit(props) {
                 levels : [""] 
               }})
               // setOptions([...list]);
-              props.updateQuestion(question, question.QuesionNo - 1);
+              props.updateQuestion(question, question.QuestionNo - 1);
             }}
         />
     </div>
@@ -60,7 +60,7 @@ function MultiSelectEdit(props) {
 const getQuestionFromProps = (props) => {
   return  {
     QuestionType: props.QuestionType,
-    QuesionNo: props.QuesionNo,
+    QuestionNo: props.QuestionNo,
     QuestionText: props.QuestionText,
     Options: props.Options
   }

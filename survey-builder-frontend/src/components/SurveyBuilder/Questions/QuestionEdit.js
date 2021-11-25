@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form'
 /**
   QuestionType: 1,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-  QuesionNo: 1, // Number
+  QuestionNo: 1, // Number
   QuestionText: "", //string
   Options: [ // list of Option
       {
@@ -26,7 +26,7 @@ import Form from 'react-bootstrap/Form'
  * @param {*} props :
  * {
  *  QuestionType: 3,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-    QuesionNo: 1, // Number
+    QuestionNo: 1, // Number
     QuestionText: "", //string
     Options: [ // list of Option
       {
@@ -62,18 +62,18 @@ function QuestionEdit(props) {
     <div className="QuestionEdit" tabIndex = "-1">
       <div className="QuestionTypeBox">
         <br />
-        <p>{props.QuesionNo}<button onClick={(e)=>{
-            {props.deleteQuestion(props.QuesionNo-1)}         
+        <p>{props.QuestionNo}<button onClick={(e)=>{
+            {props.deleteQuestion(props.QuestionNo-1)}         
         }} className="close-button"><img src="./remove.svg"/></button></p><label for="qTypeLabel" className="topmargin">Question Type:</label>
         <br />
         <Form.Select aria-label="Default select example" name="qType" id="qTypeSelect" value={options[qType - 1]} onChange={(e) => {
           const newQues = {
             QuestionType: (e.target.selectedIndex + 1),
-            QuesionNo: props.QuesionNo,
+            QuestionNo: props.QuestionNo,
             QuestionText: props.QuestionText,
             Options: props.Options
           }
-          props.updateQuestion(newQues, props.QuesionNo - 1);
+          props.updateQuestion(newQues, props.QuestionNo - 1);
         }}>
           <option value={options[0]}>Text Based</option>
           <option value={options[1]}>Single Select</option>

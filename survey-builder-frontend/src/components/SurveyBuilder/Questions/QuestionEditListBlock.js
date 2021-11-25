@@ -5,7 +5,7 @@ import QuestionEdit from './QuestionEdit';
  *Questions: [
   {
   QuestionType: 1,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-  QuesionNo: 1, // Number
+  QuestionNo: 1, // Number
   QuestionText: "", //string
   Options: [ // list of Option
       {
@@ -24,7 +24,7 @@ import QuestionEdit from './QuestionEdit';
 const getDefaultQuestion = () => {
   return {
     QuestionType: 3,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-    QuesionNo: 1, // Number
+    QuestionNo: 1, // Number
     QuestionText: "", //string
     Options: [ // list of Option
       {
@@ -45,8 +45,8 @@ function QuestionEditListBlock(props) {
   console.log(no_of_questions)
   for (var i = 0; i < no_of_questions; i++) {
     const question_data = props.Questions[i];
-    question_data.QuesionNo = i + 1;
-    console.log(question_data.QuesionNo)
+    question_data.QuestionNo = i + 1;
+    console.log(question_data.QuestionNo)
     questions.push(<>
       <QuestionEdit
         key={i}
@@ -59,19 +59,19 @@ function QuestionEditListBlock(props) {
         }}
         deleteQuestion={(questionIndex) => {
           var questions_data_list = props.Questions;
-          questions_data_list = questions_data_list.filter((question) => question.QuesionNo != questionIndex + 1);
+          questions_data_list = questions_data_list.filter((question) => question.QuestionNo != questionIndex + 1);
           for (var j = questionIndex; j < questions_data_list.length; j++) {
-            questions_data_list[j].QuesionNo -= 1;
+            questions_data_list[j].QuestionNo -= 1;
           }
           props.setQuestionData({ Questions: questions_data_list });
         }} />
       <button id={"add_" + i} key={i} className="add-button" onClick={(e) => {
         const questions_updated = props.Questions;
         const default_question = getDefaultQuestion()
-        default_question.QuesionNo = parseInt(e.target.id.split('_')[1], 10) + 2;
+        default_question.QuestionNo = parseInt(e.target.id.split('_')[1], 10) + 2;
         questions_updated.splice(parseInt(e.target.id.split('_')[1], 10) + 1, 0, default_question);
-        for (var j = default_question.QuesionNo; j < questions_updated.length; j++) {
-          questions_updated[j].QuesionNo += 1;
+        for (var j = default_question.QuestionNo; j < questions_updated.length; j++) {
+          questions_updated[j].QuestionNo += 1;
         }
         props.setQuestionData({ Questions: questions_updated });
       }}></button>
@@ -84,10 +84,10 @@ function QuestionEditListBlock(props) {
         <button id={"add_" + 0} key={0} className="add-button" onClick={(e) => {
           const questions_updated = props.Questions;
           const default_question = getDefaultQuestion()
-          default_question.QuesionNo = parseInt(e.target.id.split('_')[1], 10) + 2;
+          default_question.QuestionNo = parseInt(e.target.id.split('_')[1], 10) + 2;
           questions_updated.splice(parseInt(e.target.id.split('_')[1], 10) + 1, 0, default_question);
-          for (var j = default_question.QuesionNo; j < questions_updated.length; j++) {
-            questions_updated[j].QuesionNo += 1;
+          for (var j = default_question.QuestionNo; j < questions_updated.length; j++) {
+            questions_updated[j].QuestionNo += 1;
           }
           props.setQuestionData({ Questions: questions_updated });
         }}></button>

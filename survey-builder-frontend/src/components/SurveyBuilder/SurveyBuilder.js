@@ -9,6 +9,8 @@ import Navigation from '../Navigation';
 
 
 const backendUri = "http://localhost:3000/";
+const frontendUri = "http://localhost:3001/";
+
 
 const getAllSurveys = async (userEmail) => {
   const uri = backendUri + "surveys";
@@ -30,7 +32,7 @@ const getData = async () => {
     Questions: [
     {
       QuestionType: 4,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-      QuesionNo: 1, // Number
+      QuestionNo: 1, // Number
       QuestionText: "This is a dummy question", //string
       Options: [ // list of Option
           {
@@ -45,7 +47,7 @@ const getData = async () => {
       },
       {
         QuestionType: 3,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-        QuesionNo: 2, // Number
+        QuestionNo: 2, // Number
         QuestionText: "This is a dummy question", //string
         Options: [ // list of Option
             {
@@ -61,21 +63,42 @@ const getData = async () => {
   ]}
 }
 
-const updateQuestionDataInServer = (questionData, currentSurveyNo) => {
+const addSurveyDataInServer = (questionData, oldSurvey) => {
   // Send update request
-  const uri = backendUri + "surveys/" + currentSurveyNo;
+  const uri = backendUri + "add_survey";
+  const newSurveyBody = {
+    ...oldSurvey,
+    Questions : questionData["Questions"]
+  }
+  console.log("NEW QUESTION");
+  console.log(newSurveyBody);
+  fetch(uri, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({...newSurveyBody})
+  }).then(()=>{alert("New Survey Saved Successfully!")
+})
+}
+
+const updateQuestionDataInServer = (questionData, oldSurvey) => {
+  // Send update request
+  const uri = backendUri + "update/survey/" + oldSurvey.SurveyNo;
+  const newSurveyBody = {
+    ...oldSurvey,
+    Questions : questionData["Questions"]
+  }
+  console.log("NEW QUESTION");
+  console.log(newSurveyBody);
   fetch(uri, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      SurveyNo : "5",
-      SurveyTitle : "IIITH zoom call meetings",
-      CreatedBy : "surveydeveloper2@iiit.ac.in",
-      Questions : questionData["Questions"]
-    })
-  })
+    body: JSON.stringify({...newSurveyBody})
+  }).then(()=>{alert("Saved Successfully!")
+})
 }
 
 const getNewSurveyNo = (surveys) => {
@@ -94,15 +117,22 @@ function SurveyBuilder(props) {
   const [surveys, setSurveys] = useState([]);
   const [mode, setMode] = useState("EDIT");
   const [isSurveySelected, setIsSurveySelected] = useState(false);
-  const [currentSurveyNo, setCurrentSurveyNo] = useState(0);
+  const [currentSurvey, setCurrentSurvey] = useState({});
+  const [isNewSurvey, setIsNewSurvey] = useState(false);
 
   const userName = "user1@students.iiit.ac.in"; // NEED to get this from login
+
+  useEffect(() => {
+    if (surveys.length == 0) {
+        getDataFromBackEnd();
+      }
+    }, []);
 
   useEffect(() => {
   if (surveys.length == 0) {
       getDataFromBackEnd();
     }
-  }, []);
+  }, [surveys, isSurveySelected]);
 
   const getDataFromBackEnd = async () => {
     var surveyData = await getAllSurveys(userName);
@@ -119,14 +149,18 @@ function SurveyBuilder(props) {
   const createSurveyTile = <SurveyTile newSurveyNo={newSurveyNo}
   setIsSurveySelected={setIsSurveySelected}
   setQuestionData={setQuestionData}
-  setCurrentSurveyNo={setCurrentSurveyNo}/>
+  setCurrentSurvey={setCurrentSurvey}
+  setIsNewSurvey={setIsNewSurvey}
+  currentUser={userName}/>
   surveyTiles.push(<li>{createSurveyTile}</li>)
 
   for(var i = 0; i < surveys.length; i++) {
-    const surveyTileComponent = <SurveyTile {...surveys[i]}
+    const surveyTileComponent = <SurveyTile survey={{...surveys[i]}}
     setIsSurveySelected={setIsSurveySelected}
     setQuestionData={setQuestionData}
-    setCurrentSurveyNo={setCurrentSurveyNo}/>;
+    setCurrentSurvey={setCurrentSurvey}
+    setIsNewSurvey={setIsNewSurvey}
+    currentUser={userName}/>;
     surveyTiles.push(<li>{surveyTileComponent}</li>)
   }
 
@@ -162,7 +196,14 @@ function SurveyBuilder(props) {
             setMode("EDIT")
           }
         }}>{mode == "PREVIEW" ? "EDIT" : "PREVIEW"}</button>
-        <button className="SaveButton" onClick={(e) => {updateQuestionDataInServer(questionData)}}>SAVE</button>
+        <button className="SaveButton" onClick={(e) => {
+          if(isNewSurvey) {
+            addSurveyDataInServer(questionData, currentSurvey);
+          }
+          else {
+            updateQuestionDataInServer(questionData, currentSurvey);
+          }
+          }}>SAVE</button>
         <button className="DiscardButton" onClick={(e)=> {
           setIsSurveySelected(false);
         }}>DISCARD</button>

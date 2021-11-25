@@ -19,46 +19,19 @@ import '../../../App.css';
     ]
 */
 
-function MultiLikertPreview(props) {
+function SingleSelectPreview(props) {
   var initialQuestionText = props["QuestionText"];
   var initialOptions = ["","",""];
 
-//   if(props["Options"] && props["Options"].length > 0) {
-//     initialOptions = [];
-//     for(var i = 0; i < props["Options"].length; i++) {
-//         initialOptions.push(props["Options"][i]["name"]);
-//     }
-//   }
-
-  const rows = [];
-  // const scales = [];
-  const scalesRowData = [];
   if(props["Options"] && props["Options"].length > 0) {
-    // scales = props["Options"][0]["levels"];
-    scalesRowData.push(<td></td>);
-    for(var i = 0; i< props["Options"][0]["levels"].length; i++){
-      scalesRowData.push(<td>{props["Options"][0]["levels"][i]}</td>);
-    }
+    initialOptions = [];
     for(var i = 0; i < props["Options"].length; i++) {
-        const options = []
-        console.log(props["Options"][i]["levels"])
-        for(var j=0; j < props["Options"][i]["levels"].length; j++) {
-            options.push(<td>
-                <input type="radio" name={props["Options"][i]["name"]} value={props["Options"][i]["levels"][j]}/>
-            </td>)
-        }
-        rows.push(<tr>
-            <td>
-                <label name={"option" + i + 1}>{props["Options"][i]["name"]}</label>
-            </td>
-            {options}
-        </tr>)
+        initialOptions.push(props["Options"][i]["name"]);
     }
   }
-
-  const selectionElements = initialOptions.map((option)=>{
+  const optionsElements = initialOptions.map((option)=>{
     return <>
-        <input className="questionCheckBox" type="checkbox" id="option1" name="option" value={option}/>
+        <input className="questionCheckBox" type="radio" id="option1" name="option" value={option}/>
         <label className="questionOptionLabel" for="option">{option}</label><br/>
        </>
     })
@@ -70,10 +43,7 @@ function MultiLikertPreview(props) {
         <br/> */}
         <p>{props.QuestionNo}. {initialQuestionText}</p>
         <br/>
-        <table>
-          <tr>{scalesRowData}</tr>
-          {rows}
-        </table>
+        {optionsElements}
         {/* <InputGroup className="mb-3">
             <InputGroup.Checkbox aria-label="Checkbox for following text input" />
             <FormControl aria-label="Text input with checkbox" />
@@ -90,4 +60,4 @@ function MultiLikertPreview(props) {
   );
 }
 
-export default MultiLikertPreview;
+export default SingleSelectPreview;

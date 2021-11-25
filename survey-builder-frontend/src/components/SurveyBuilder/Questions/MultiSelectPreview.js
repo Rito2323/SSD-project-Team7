@@ -5,7 +5,7 @@ import '../../../App.css';
 
 /**
   QuestionType: 1,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-  QuesionNo: 1, // Number
+  QuestionNo: 1, // Number
   QuestionText: "", //string
   Options: [ // list of Option
       {
@@ -41,7 +41,7 @@ function MultiSelectPreview(props) {
         {/* <br/>
         <label className="QuestionEditContentItem">Question Text:</label>
         <br/> */}
-        <p>{props.QuesionNo}. {initialQuestionText}</p>
+        <p>{props.QuestionNo}. {initialQuestionText}</p>
         <br/>
         {optionsElements}
         {/* <InputGroup className="mb-3">
