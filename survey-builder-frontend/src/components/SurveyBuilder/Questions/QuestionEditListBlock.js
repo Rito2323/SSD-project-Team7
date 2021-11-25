@@ -29,7 +29,7 @@ function QuestionEditListBlock(props) {
     questions.push(<QuestionEdit key={i} {...props.Questions[i]}/>);
   }
   return (
-    <div className="QuestionEditListBlock">
+    <div className="QuestionEditListBlock" tabIndex = "-1">
        {questions}
     </div>
   );

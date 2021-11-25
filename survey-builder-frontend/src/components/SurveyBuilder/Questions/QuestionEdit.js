@@ -36,7 +36,7 @@ function QuestionEdit(props) {
   }
   var options = ["TextBased", "SingleSelect", "MultiSelect", "MatrixLikert"];
   return (
-    <div className="QuestionEdit">
+    <div className="QuestionEdit" tabIndex = "-1">
       <div className="QuestionTypeBox">
       <br/>
       <label for="qTypeLabel" className="topmargin">Question Type:</label>
