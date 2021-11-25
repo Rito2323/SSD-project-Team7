@@ -36,7 +36,6 @@ const getNewSurvey= (newSurveyNo) =>{
 }
 
 function SurveyTile(props) {
-
     var survey = props;
     if(props.newSurveyNo != undefined) {
         survey = getNewSurvey(props.newSurveyNo)
@@ -45,6 +44,7 @@ function SurveyTile(props) {
     return (<button className="survey-tile" onClick={(e)=>{
         props.setIsSurveySelected(true);
         props.setQuestionData({Questions: survey.Questions});
+        props.setCurrentSurveyNo(survey.SurveyNo);
     }}>
         <table>
             <tr>

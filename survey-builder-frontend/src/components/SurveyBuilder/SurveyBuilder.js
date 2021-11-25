@@ -5,14 +5,19 @@ import React, {useState, useEffect} from "react";
 import QuestionEditListBlock from './Questions/QuestionEditListBlock';
 import PreviewQuestionListBlock from './Questions/PreviewQuestionListBlock';
 import SurveyTile from '../Utility/SurveyTile';
+import Navigation from '../Navigation';
 
 
-const getAllSurveys = async () => {
-  var response = await fetch('http://localhost:3000/surveys')
+const backendUri = "http://localhost:3000/";
+
+const getAllSurveys = async (userEmail) => {
+  const uri = backendUri + "surveys";
+  var response = await fetch(uri)
   var surveys = await response.json();
-  console.log("SURVEYS FETCHED : ");
-  console.log(surveys);
-  return surveys;
+  var surveysForUser = surveys.filter((survey) => survey.CreatedBy == userEmail);
+  console.log("SURVEYS FETCHED For User : ");
+  console.log(surveysForUser);
+  return surveysForUser;
 }
 
 const getData = async () => {
@@ -56,9 +61,10 @@ const getData = async () => {
   ]}
 }
 
-const updateQuestionDataInServer = (questionData) => {
+const updateQuestionDataInServer = (questionData, currentSurveyNo) => {
   // Send update request
-  fetch('http://localhost:3000/update/survey/5', {
+  const uri = backendUri + "surveys/" + currentSurveyNo;
+  fetch(uri, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -90,7 +96,8 @@ function SurveyBuilder(props) {
   const [isSurveySelected, setIsSurveySelected] = useState(false);
   const [currentSurveyNo, setCurrentSurveyNo] = useState(0);
 
-  const userName = "user1@students.iiit.ac.in";
+  const userName = "user1@students.iiit.ac.in"; // NEED to get this from login
+
   useEffect(() => {
   if (surveys.length == 0) {
       getDataFromBackEnd();
@@ -98,7 +105,7 @@ function SurveyBuilder(props) {
   }, []);
 
   const getDataFromBackEnd = async () => {
-    var surveyData = await getAllSurveys();
+    var surveyData = await getAllSurveys(userName);
     setSurveys(surveyData);
     var data = await getData();
     console.log(data);
@@ -111,13 +118,15 @@ function SurveyBuilder(props) {
 
   const createSurveyTile = <SurveyTile newSurveyNo={newSurveyNo}
   setIsSurveySelected={setIsSurveySelected}
-  setQuestionData={setQuestionData}/>
+  setQuestionData={setQuestionData}
+  setCurrentSurveyNo={setCurrentSurveyNo}/>
   surveyTiles.push(<li>{createSurveyTile}</li>)
 
   for(var i = 0; i < surveys.length; i++) {
     const surveyTileComponent = <SurveyTile {...surveys[i]}
     setIsSurveySelected={setIsSurveySelected}
-    setQuestionData={setQuestionData}/>;
+    setQuestionData={setQuestionData}
+    setCurrentSurveyNo={setCurrentSurveyNo}/>;
     surveyTiles.push(<li>{surveyTileComponent}</li>)
   }
 
@@ -125,6 +134,8 @@ function SurveyBuilder(props) {
   console.log(questionData)
   // var questionData = ;
   return (
+    <>
+    <Navigation/>
     <div className="App SurveyBuilder">
        {!isSurveySelected ? <>
         <ul className="survey-tile-list">
@@ -157,6 +168,7 @@ function SurveyBuilder(props) {
         }}>DISCARD</button>
        </>}
     </div>
+    </>
   );
 }
 
