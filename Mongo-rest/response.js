@@ -18,7 +18,7 @@ const mongoose = require("mongoose");
 //});
 
 const Answer = new mongoose.Schema({
-    QuestionNo: {
+    QuesionNo: {
       type: Number,
       required: true,
     },

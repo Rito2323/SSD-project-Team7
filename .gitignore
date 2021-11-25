@@ -2,6 +2,7 @@
 
 # dependencies
 /survey-builder-frontend/node_modules
+/Mongo-rest/node_modules
 /.pnp
 .pnp.js
 

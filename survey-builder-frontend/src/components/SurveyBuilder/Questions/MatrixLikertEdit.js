@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../../../App.css';
 import ChangeableList from './QuestionUtilities/ChangeableList';
+import FormControl from 'react-bootstrap/FormControl'
+import Form from 'react-bootstrap/Form'
 
 /**
   QuestionType: 1,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
@@ -47,6 +49,16 @@ function MatrixLikertEdit(props) {
         <br/>
         <label className="QuestionEditContentItem">Question Text:</label>
         <br/>
+        {/* <FormControl
+          placeholder="Username"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        /> */}
+        {/* <Form.Control
+          as="textarea"
+          placeholder="Leave a comment here"
+          style={{ height: '100px' }}
+        /> */}
         <textarea className="QuestionEditContentItem" value={initialQuestionText}/>
         <br/>
         <ChangeableList
