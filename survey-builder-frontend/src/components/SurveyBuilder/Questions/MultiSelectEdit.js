@@ -9,17 +9,16 @@ import '../../../App.css';
   Options: [ // list of Option
       {
         name: "option1",
-        levels: ["low", "mid", "high"]
+        levels: [""]
       },
       {
         name: "option2",
-        levels: ["low", "mid", "high"]
+        levels: [""]
       }
     ]
 */
 
 function MultiSelectEdit(props) {
-  var initialQuestionText = "";
   var initialOptions = ["","",""];
 
   if(props["Options"] && props["Options"].length > 0) {
@@ -28,24 +27,43 @@ function MultiSelectEdit(props) {
         initialOptions.push(props["Options"][i]["name"]);
     }
   }
-  const [optionsState, setOptions] = useState(initialOptions);
+  // const [optionsState, setOptions] = useState(initialOptions);
   return (
     <div className="MultiSelectEdit">
         <br/>
         <label className="QuestionEditContentItem">Question Text:</label>
         <br/>
-        <textarea className="QuestionEditContentItem" value={initialQuestionText}/>
+        <textarea className="QuestionEditContentItem" value={props.QuestionText} onChange={(e)=>{
+          var question = getQuestionFromProps(props);
+          question.QuestionText = e.target.value;
+          props.updateQuestion(question, question.QuesionNo - 1);
+        }}/>
         <br/>
         <ChangeableList
             title="Options : "
             addButtonTitle="Add option"
-            list={optionsState}
+            list={initialOptions}
             updateList={(list)=>{
-              setOptions([...list]);
+              var question = getQuestionFromProps(props);
+              question.Options = list.map((option)=>{return {
+                name : option,
+                levels : [""] 
+              }})
+              // setOptions([...list]);
+              props.updateQuestion(question, question.QuesionNo - 1);
             }}
         />
     </div>
   );
+}
+
+const getQuestionFromProps = (props) => {
+  return  {
+    QuestionType: props.QuestionType,
+    QuesionNo: props.QuesionNo,
+    QuestionText: props.QuestionText,
+    Options: props.Options
+  }
 }
 
 export default MultiSelectEdit;
