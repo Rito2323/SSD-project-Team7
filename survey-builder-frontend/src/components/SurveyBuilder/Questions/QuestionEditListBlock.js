@@ -79,7 +79,7 @@ function QuestionEditListBlock(props) {
     );
   }
   return (
-    <div className="QuestionEditListBlock">
+    <div className="QuestionEditListBlock" tabIndex = "-1">
       {questions.length > 0 ? questions :
         <button id={"add_" + 0} key={0} className="add-button" onClick={(e) => {
           const questions_updated = props.Questions;
