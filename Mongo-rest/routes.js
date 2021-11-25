@@ -94,5 +94,15 @@ app.get("/responses", async (request, response) => {
     }
   });
 
+
+  app.get("/responses/:devmail", async (request, response) => {
+    const responses = await ResponseModel.find({CreatedBy: request.params.devmail});
+  try {
+      response.send(responses);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
 module.exports = app;
 
