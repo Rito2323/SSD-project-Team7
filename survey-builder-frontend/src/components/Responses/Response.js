@@ -47,7 +47,7 @@ function JsonDataDisplay(){
       const initial_res = [] 
         
         for(const [key,val] of Object.entries(info.Answers)){
-            initial_res.push(<td>{val}</td>)
+            initial_res.push(<td className="td1">{val}</td>)
           }
       
           return(
