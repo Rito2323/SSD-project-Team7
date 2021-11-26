@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Roboto:wght@500&family=Rubik&display=swap');
+
+:root{
+    --btn: #03A9F4;
+    --clr: #2D3748
+}
+.Transcript{
+    text-align: center;
+}
+.h1{
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--clr);
+}
+
+.p{
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    margin: 0px !important;
+}
+
+.msg{
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+}
+.btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    background-color: white;
+    margin: 20px;
+    margin-bottom: 0px !important;
+    padding:15px;
+    border-radius: 5px;
+    color: var(--btn);
+    border-width: 1px;
+    border-color: var(--btn);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: .875rem;
+}
+
+.btn:hover{
+    background-color: var(--btn);
+    color: white;
+    border-color: var(--btn);
+}
+
+.dense-btn{
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    background-color: var(--btn);
+    margin: 20px;
+    margin-bottom: 10px;
+    padding:15px;
+    border-radius: 5px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: .875rem;
+    border-color: var(--btn);
+}
+
+.dense-btn:hover{
+    background-color: white;
+    color: var(--btn);
+    border-color: var(--btn);
+}
