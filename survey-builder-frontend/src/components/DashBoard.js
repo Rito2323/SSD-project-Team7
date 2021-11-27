@@ -16,8 +16,12 @@ function DashBoard() {
 					<Link to='/buildsurvey'>
 					<button>Survey Builder</button>
 					</Link>
+					<Link to='/transcript'>
 					<button>Transcript Generator</button>
+					</Link>
+					<Link to='/responses'>
 					<button>View Responses</button>
+					</Link>
 				</div>
 			</div>
 		</header>

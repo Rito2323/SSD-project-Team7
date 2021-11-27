@@ -46,7 +46,7 @@
     cursor: pointer;
   }
   
-  label {
+  .login-label {
     cursor: pointer;
     color: whitesmoke;
     display: block;
@@ -58,7 +58,7 @@
     font-size: 3vh;
   }
   
-  button[type=submit]{
+  .login-button{
     display: inline-block;
     font-size: 20px;
     width: 100px;

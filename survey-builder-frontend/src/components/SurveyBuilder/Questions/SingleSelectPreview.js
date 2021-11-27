@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
 import '../../../App.css';
 
 /**
@@ -58,7 +56,6 @@ const optionsElements = initialOptions.map((option) => {
         <label className="questionOptionLabel" for="option">{option}</label><br />
     </>
 })
-const [optionsState, setOptions] = useState(initialOptions);
 return (
     <div className="MultiSelectPreview">
         {/* <br/>

@@ -125,7 +125,7 @@ function SurveyBuilder(props) {
   const [currentSurvey, setCurrentSurvey] = useState({});
   const [isNewSurvey, setIsNewSurvey] = useState(false);
 
-  const userName = "user1@students.iiit.ac.in"; // NEED to get this from login
+  const userName = localStorage.getItem("currentUser"); // NEED to get this from login
 
   useEffect(() => {
     if (surveys.length == 0) {

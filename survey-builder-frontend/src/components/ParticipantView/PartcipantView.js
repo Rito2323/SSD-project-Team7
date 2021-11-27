@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import QuestionPreview from '../SurveyBuilder/Questions/QuestionPreview';
 import PreviewSurveyTitleBlock from '../SurveyBuilder/PreviewSurveyTitleBlock';
+import Login from '../Login/Loginn';
 import '../../App.css';
 
 const backendUri = "http://localhost:3000/";
@@ -20,8 +21,16 @@ const getSurvey = async (surveyNo) => {
     return survey;
 }
 
-const addResponseInServer = () => {
-
+const addResponseInServer = async (responseData) => {
+    const uri = backendUri + "add_response";
+    fetch(uri, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({...responseData})
+      }).then(()=>{alert("Thanks! Your responses have been recorded.");
+});
 }
 
 const getQuestionHeaderKey = (question, optionName = undefined) => {
@@ -46,8 +55,9 @@ const isEmptyObject = (obj) => {
 
 function ParticipantView(props) {
     console.log("PARTICIPANT VIEW");
-    const participantEmail = "user2@students.iiit.ac.in"  // NEED to get this from login
+    const participantEmail = localStorage.getItem("");  // NEED to get this from login
     const [survey, setSurvey] = useState({});
+    const [isParticipantEmailEntered, setIsParticipantEmailEntered] = useState(false);
     const [responseData, setResponseData] = useState({});
     var { id } = useParams();
     const surveyNo = id;
@@ -60,7 +70,7 @@ function ParticipantView(props) {
             const response = {
                 SurveyNo: survey["SurveyNo"],
                 CreatedBy: survey["CreatedBy"],
-                Participants: participantEmail,
+                Participant: participantEmail,
                 Answers: {}
             };
 
@@ -101,18 +111,19 @@ function ParticipantView(props) {
                     setResponseData(resCopy);
             }} />);
         }
-
-        return (<div className="QuestionEditListBlock">
+        return (<>{!isParticipantEmailEntered ? <Login setParticipantEmail={setIsParticipantEmailEntered} surveyNo={survey["SurveyNo"]}/> :
+            <div className="QuestionEditListBlock">
             <PreviewSurveyTitleBlock titleVal={survey["SurveyTitle"]} />
             {questionsElements}
             <button className="submit-button" onClick={()=>{
                 console.log(responseData);
                 // call backend here
+                addResponseInServer(responseData);
             }}>SUBMIT</button>
-        </div>)
+        </div>
+        }</>)
     } else {
-        return <><PreviewSurveyTitleBlock titleVal={"404: Survey not found."} />
-        </>
+        return <><PreviewSurveyTitleBlock titleVal={"404: Survey not found."} /></>
     }
 }
 

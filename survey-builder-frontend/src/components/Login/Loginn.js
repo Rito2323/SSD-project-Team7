@@ -1,40 +1,56 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import App from '../../App';
 //import React, { Component } from "react";
-import 'login.css';
+import './login.css';
+import { Link } from 'react-router-dom'
 
-
-
-function Login(props){
+function Login(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [allUser, setAllUser] = useState([]);
 
-    const submitForm = (e)=> {
+    const submitForm = (e) => {
         e.preventDefault();
-        const newUser = {email: email, password: password};
+        const newUser = { email: email, password: password };
         setAllUser([...allUser, newUser]);
-
+        if (props.setParticipantEmail) {
+            localStorage.setItem("participantUser", email);
+            props.setParticipantEmail(true);
+        } else {
+            localStorage.setItem("currentUser", email);
+        }
         console.log(allUser)
     }
 
-    return( 
+    return (
         <form className="login" action="" onSubmit={submitForm}>
             <div className="eid">
-                <label className="email" hrtmlFor="email">EMAIL ID</label><br></br>
-                <input  type="text" name="email" id="email" autoComplete="off" value={email}
-                onChange={(e)=> setEmail(e.target.value)}
+                <label className="email login-label" hrtmlFor="email">EMAIL ID</label><br></br>
+                <input type="text" name="email" id="email" autoComplete="off" value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
-                <br/>
+                <br />
             </div>
-            <div className="eid">   
-                <label className="email" hrtmlFor="password">PASSWORD</label><br/>
+            <div className="eid">
+                <label className="email login-label" hrtmlFor="password">PASSWORD</label><br />
                 <input type="password" name="password" id="password" autoComplete="off" value={password}
-                onChange={(e)=> setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
             <div className="btn">
-            <button type="submit">LOGIN</button>
+                {
+                    props.setParticipantEmail == undefined ?
+                        <Link to='/'>
+                            <button className="login-button" type="submit" onClick={(e) => {
+                                if (props.setHasLoggedIn && props.setParticipantEmail == undefined) {
+                                    props.setHasLoggedIn(true);
+                                }
+                            }}>LOGIN</button></Link> : <Link to={'/survey/'+props.surveyNo}>
+                            <button className="login-button" type="submit" onClick={(e) => {
+                                if (props.setParticipantEmail) {
+                                    props.setParticipantEmail(true);
+                                }}}>LOGIN</button></Link>
+                }
             </div>
         </form>
     )

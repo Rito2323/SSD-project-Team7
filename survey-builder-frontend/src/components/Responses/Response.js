@@ -1,9 +1,11 @@
 import react from 'react';
 import React from 'react'
 //import React, { Component } from "react";
-import {  Table } from "semantic-ui-react";
-import 'response.css';
-import {useState} from 'react';
+// import {  Table } from "semantic-ui-react";
+import './response.css';
+import {useState, useEffect} from 'react';
+
+const backendUri = "http://localhost:3000/";
 
 
 const sample =[ 
@@ -32,17 +34,45 @@ const sample =[
       }  
     }
   ]
+
+  const getResponsesFromBackend = async () => {
+    const dev_mail = localStorage.getItem("currentUser"); 
+    const uri = backendUri + "responses" ;
+    var response = await fetch(uri)
+    var responses = await response.json();
+    console.log(responses);
+    responses = responses.filter((res)=>res["CreatedBy"] == dev_mail);
+    // console.log(surveys);
+    // var surveysForUser = surveys.filter((survey) => survey.CreatedBy == userEmail);
+    // console.log("SURVEYS FETCHED For User : ");
+    // console.log(surveysForUser);
+    // console.log(surveyNo)
+    return responses;
+  }
   
 function JsonDataDisplay(){
   const [Questions, setQuestions] = useState([])
-  const sample_count = Object.keys(sample[0].Answers).length
+  const [responses, setResponses] = useState([])
   const initial_Ques = []
-  for( var i=0;i<sample_count;i++){
-    initial_Ques.push(<th>Question{i+1}</th>)
+  if(responses.length > 0) {
+    const sample_count = Object.keys(responses[0].Answers).length
+    for( var i=0;i<sample_count;i++){
+      initial_Ques.push(<th>Question{i+1}</th>)
+    }
+  }
+ 
+
+  useEffect(() => {
+    getDataFromBackEnd();
+  }, []);
+
+  const getDataFromBackEnd = async () => {
+      var responses = await getResponsesFromBackend();
+      console.log(responses);
+      setResponses(responses);
   }
 
-
-  const DisplayData=sample.map(
+  const DisplayData=responses.map(
       (info)=>{
       const initial_res = [] 
         
