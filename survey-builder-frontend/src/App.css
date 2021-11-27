@@ -21,6 +21,7 @@
   background-size: cover;
   background-attachment: fixed;
   z-index: 10;
+  min-height: 100vh;
 }
 
 .SurveyTitleBlock {
@@ -57,6 +58,7 @@
 }
 
 .down-button {
+  background-color: rgba(0, 0, 0, 0);
   background-image: url("./icons/down.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -67,6 +69,7 @@
 }
 
 .up-button {
+  background-color: rgba(0, 0, 0, 0);
   background-image: url("./icons/up.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -77,6 +80,7 @@
 }
 
 .del-button {
+  background-color: rgba(0, 0, 0, 0);
   background-image: url("./icons/delete.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -94,16 +98,22 @@
   width: 2.5vw;
   height: 2.5vw;
   margin-top: 2vh;
-  margin-left: 0.5vw;
   border-color: rgba(255, 255, 255, 0);
+  margin-left: 48vw;
 }
 
 .close-button{
-  width: 1.8vw;
-  height: 1.8vw;
+  background-color: rgba(220, 0, 0, 0.8);
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  width: 1.5vw;
+  height: 1.5vw;
   margin-left: 2vw;
   float: right;
-  border-color: rgba(255, 255, 255, 0);
+  border-style: none;
+  border-radius: 2px;
+  box-shadow: 0px 0px 20px 0 #0000002c;
 }
 
 .survey-tile {
@@ -208,7 +218,7 @@ button:hover {
    margin-top: 3.5vh;
    margin-left: 2vw;
    color: #fff;
-   text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);;
+   text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
 }
 
 .SurveyTitleBlock input:focus {
@@ -249,14 +259,49 @@ button:hover {
   color: white;
 }
 
-.SaveButton, .DiscardButton {
-  margin: 100px;
-  margin-left: 350px;
+.PreviewEditButton {
+  font-family: Geneva;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+  margin-top:50px;
+  margin-left: 370px;
+  margin-bottom: 100px;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 4px;
   border-style: none;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.384);
+  box-shadow: 0px 0px 20px 0 #0000002c;
   background-color: rgb(200, 200, 200, 0.6);
+  color: white;
+  width: 120px;
+}
+
+.SaveButton {
+  font-family: Geneva;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+  margin-top:50px;
+  margin-left: 71px;
+  margin-bottom: 100px;
+  padding: 10px;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+  background-color: rgb(200, 200, 200, 0.6);
+  color: white;
+  width: 120px;
+} 
+
+.DiscardButton {
+  font-family: Geneva;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+  margin-top:50px;
+  margin-left: 71px;
+  margin-bottom: 100px;
+  padding: 10px;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+  background-color: rgb(200, 200, 200, 0.6);
+  color: white;
+  width: 120px;
 }
 
 .App-link {

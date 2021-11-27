@@ -15,7 +15,7 @@ const getAllSurveys = async () => {
   return surveys;
 }
 
-const getData = async () => {
+const getData = () => {
 
   // var response = await fetch('http://localhost:3000/surveys')
   // var question = await response.json();
@@ -84,7 +84,7 @@ const getNewSurveyNo = (surveys) => {
 
 function SurveyBuilder(props) {
   const [value, setValue] = useState("Untitled Form");
-  const [questionData, setQuestionData] = useState({Questions: []});
+  const [questionData, setQuestionData] = useState(getData());
   const [surveys, setSurveys] = useState([]);
   const [mode, setMode] = useState("EDIT");
   const [isSurveySelected, setIsSurveySelected] = useState(false);
@@ -93,7 +93,7 @@ function SurveyBuilder(props) {
   const userName = "user1@students.iiit.ac.in";
   useEffect(() => {
   if (surveys.length == 0) {
-      getDataFromBackEnd();
+     // getDataFromBackEnd();
     }
   }, []);
 
