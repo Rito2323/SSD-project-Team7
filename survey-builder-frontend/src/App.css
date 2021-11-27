@@ -57,6 +57,7 @@
   color: #fff;
 }
 
+
 .down-button {
   background-color: rgba(0, 0, 0, 0);
   background-image: url("./icons/down.png");
@@ -243,6 +244,126 @@ button:hover {
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.425);
   width: 100vw;
   z-index: 20;
+}
+
+.ParticipantView {
+  background: #43C6AC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+  padding: 5vh;
+}
+
+.ParticipantView .QuestionEdit {
+  position: relative;
+  width: 45vw;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding-top: 30px;
+  padding-bottom: 40px;
+  margin-top: 8vh;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+  border-radius: 3px;
+  color: rgb(2, 3, 63);
+  border-color: rgb(0, 30, 70);
+  border-width: 0px 0px 10px 0px;
+  border-style: solid;
+}
+
+.ParticipantView .SurveyTitleBlock {
+  position: relative;
+  height: 15vh;
+  /* margin-top: 20vh; */
+  background-color: white;
+  width: 45vw;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+  border-radius: 3px;
+  color: rgb(5, 8, 5);
+  border-color: rgb(0, 30, 70);
+  border-width: 0px 0px 10px 0px;
+  border-style: solid;
+}
+
+/* .ParticipantView {
+  position: relative;
+  height: 15vh;
+  margin-top: 20vh;
+  background-color: white;
+  width: 45vw;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+  border-radius: 3px;
+  color: rgb(5, 8, 5);
+  border-color: rgba(218, 218, 218, 0.555);
+  border-width: 3px;
+  border-style: solid;
+} */
+
+.ParticipantView input {
+  color: rgb(5, 8, 5);
+}
+
+.ParticipantView label, .ParticipantView p {
+  font-size: 18px;
+}
+
+.ParticipantView .QuestionEdit textarea {
+  border-color: rgb(0, 0, 0);
+  width: 38vw;
+  border-width: 3px;
+  border-style: solid;
+  font-size: 18px;
+  max-width: 38vw;
+  min-width: 38vw;
+}
+
+.ParticipantView .QuestionEdit td {
+  border-color: rgb(0, 0, 0);
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.ParticipantView .QuestionEdit td input[type=radio]{
+  border-color: rgb(0, 0, 0);
+  margin-left: -0.1vw;
+}
+
+.ParticipantView .submit-button{
+  border-color: rgb(0, 0, 0);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10px;
+  margin-top: 4vh;
+  margin-left: 43vw;
+  margin-right: 40vw;
+  font-size: 18px;
+  padding: 10px;
+  background-color: white;
+}
+
+.ParticipantView .submit-button:hover{
+  border-color: rgb(0, 13, 58);
+  border-width: 4px;
+  border-style: solid;
+  border-radius: 10px;
+  margin-top: 4vh;
+  margin-left: 43vw;
+  margin-right: 40vw;
+  font-size: 18px;
+  padding: 10px;
+  background-color: white;
+}
+
+.ParticipantView ::selection {
+  color: rgb(255, 255, 255);
+  background: rgb(0, 21, 71);
 }
 
 .survey-tile-list {
