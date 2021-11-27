@@ -87,9 +87,11 @@ const addSurveyDataInServer = ({SurveyTile, questionData}, oldSurvey, setIsSurve
 
 const updateQuestionDataInServer = ({SurveyTile, questionData}, oldSurvey, setIsSurveySelected) => {
   // Send update request
+  console.log("Inside updateQuestionDataInServer")
   const uri = backendUri + "update/survey/" + oldSurvey.SurveyNo;
   const newSurveyBody = {
-    ...oldSurvey,
+    SurveyNo: oldSurvey.SurveyNo,
+    
     SurveyTile: SurveyTile,
     Questions : questionData["Questions"]
   }

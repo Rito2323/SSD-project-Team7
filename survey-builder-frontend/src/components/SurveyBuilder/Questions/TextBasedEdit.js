@@ -24,7 +24,7 @@ function TextBasedEdit(props) {
           <div class="Question-heading">Question:</div>
           <div class="Question-text"><textarea id="textQuestion" value={props.QuestionText} onChange={(e)=>{
           var question = getQuestionFromProps(props);
-          props.QuestionText = e.target.value;
+          question.QuestionText = e.target.value;
           props.updateQuestion(question, props.QuestionNo - 1);
         }}></textarea></div>
       </div>

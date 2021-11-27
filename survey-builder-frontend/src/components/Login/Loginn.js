@@ -11,12 +11,15 @@ function Login(props) {
 
     const submitForm = (e) => {
         e.preventDefault();
+        console.log("Inside submit form.");        
         const newUser = { email: email, password: password };
         setAllUser([...allUser, newUser]);
         if (props.setParticipantEmail) {
+            console.log("saving Participant in local storage.");
             localStorage.setItem("participantUser", email);
             props.setParticipantEmail(true);
         } else {
+            console.log("saving user in local storage.");
             localStorage.setItem("currentUser", email);
         }
         console.log(allUser)
@@ -42,11 +45,29 @@ function Login(props) {
                     props.setParticipantEmail == undefined ?
                         <Link to='/'>
                             <button className="login-button" type="submit" onClick={(e) => {
+                                console.log("In 48");
+                                if (props.setParticipantEmail) {
+                                    console.log("saving Participant in local storage.");
+                                    localStorage.setItem("participantUser", email);
+                                    props.setParticipantEmail(true);
+                                } else {
+                                    console.log("saving user in local storage.");
+                                    localStorage.setItem("currentUser", email);
+                                }                                
                                 if (props.setHasLoggedIn && props.setParticipantEmail == undefined) {
                                     props.setHasLoggedIn(true);
                                 }
                             }}>LOGIN</button></Link> : <Link to={'/survey/'+props.surveyNo}>
                             <button className="login-button" type="submit" onClick={(e) => {
+                                console.log("In 54");
+                                if (props.setParticipantEmail) {
+                                    console.log("saving Participant in local storage.");
+                                    localStorage.setItem("participantUser", email);
+                                    props.setParticipantEmail(true);
+                                } else {
+                                    console.log("saving user in local storage.");
+                                    localStorage.setItem("currentUser", email);
+                                }
                                 if (props.setParticipantEmail) {
                                     props.setParticipantEmail(true);
                                 }}}>LOGIN</button></Link>
