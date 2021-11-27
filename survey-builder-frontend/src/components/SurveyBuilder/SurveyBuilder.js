@@ -23,7 +23,7 @@ const getAllSurveys = async (userEmail) => {
   return surveysForUser;
 }
 
-const getData = async () => {
+const getData = () => {
 
   // var response = await fetch('http://localhost:3000/surveys')
   // var question = await response.json();
@@ -137,7 +137,7 @@ function SurveyBuilder(props) {
 
   useEffect(() => {
   if (surveys.length == 0) {
-      getDataFromBackEnd();
+     // getDataFromBackEnd();
     }
   }, [surveys, isSurveySelected]);
 
