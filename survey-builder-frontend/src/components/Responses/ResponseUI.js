@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import App from '../../App';
 import './response.css';
 import JsonDataDisplay from './Response'
+import Navigation from '../Navigation';
 
 const backendUri = "http://localhost:3000/";
 
-const getSurveysForUser = async () => {
+const getSurveysForUser = async (userEmail) => {
     const uri = backendUri + "surveys";
     var response = await fetch(uri)
     var surveys = await response.json();
     // console.log(surveys);
-    // var surveysForUser = surveys.filter((survey) => survey.CreatedBy == userEmail);
-    // console.log("SURVEYS FETCHED For User : ");
-    // console.log(surveysForUser);
+    var surveysForUser = surveys.filter((survey) => survey.CreatedBy == userEmail);
+    console.log("SURVEYS FETCHED For User : ");
+    console.log(surveysForUser);
     // console.log(surveyNo)
-    return surveys;
+    return surveysForUser;
 }
 
 function Surveyno(props) {
     const [Surveyno, setSurveyNo] = useState("");
     const [Surveys, setSurveys] = useState([]);
     const [isSurveyNoSelected, setisSurveyNoSelected] = useState(false);
-
+    const currentUser = localStorage.getItem("currentUser");
 
     const submitForm = (e) => {
         e.preventDefault();
@@ -32,11 +32,11 @@ function Surveyno(props) {
     }
 
     useEffect(() => {
-        getDataFromBackEnd();
+        getDataFromBackEnd(currentUser);
     }, []);
 
-    const getDataFromBackEnd = async () => {
-        var surveys = await getSurveysForUser();
+    const getDataFromBackEnd = async (currentUser) => {
+        var surveys = await getSurveysForUser(currentUser);
         console.log(surveys);
         setSurveys(surveys);
     }
@@ -50,24 +50,19 @@ function Surveyno(props) {
     }
 
     return (
-        <>{isSurveyNoSelected ? <JsonDataDisplay/> :
-            <>
+        <>
+        <Navigation/>
+        {isSurveyNoSelected ? <JsonDataDisplay/> :
+            <div className="responseui">
             <form className="survey" action="" onSubmit={submitForm}>
             <div>
                 <label className="email" hrtmlFor="email">Select the survey number</label><br></br>
-
-                {/* <input type="radio" id="s1" name="S1" value="1" onClick={(e) => setSurveyNo(e.target.value)} />
-                <label > Survey 1</label><br />
-                <input type="radio" id="s2" name="S2" value="2" onClick={(e) => setSurveyNo(e.target.value)} />
-                <label> Survey 2</label><br />
-                <input type="radio" id="s3" name="S3" value="3" onClick={(e) => setSurveyNo(e.target.value)} />
-                <label> Survey 3</label><br /><br /> */}
                 {surveyNos}
             </div>
             <div className="btn">
                 <button type="submit">Show</button>
             </div>
-        </form></>
+        </form></div>
         }</>);
 }
 export default Surveyno;

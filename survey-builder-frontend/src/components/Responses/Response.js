@@ -91,7 +91,7 @@ function JsonDataDisplay(){
   )
 
   return(
-      <div>
+      <div className="responseui">
           <table className="table1 table-striped">
               
               <thead>

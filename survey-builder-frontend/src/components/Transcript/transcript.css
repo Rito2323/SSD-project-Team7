@@ -4,9 +4,18 @@
     --btn: #03A9F4;
     --clr: #2D3748
 }
-.Transcript{
+
+.transcript-div{
     text-align: center;
+    padding-top: 12vh;
+    background-image: url("../../heron.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: 10;
+    min-height: 100vh;
 }
+
 .h1{
     font-family: 'Inter', sans-serif;
     font-weight: 600;
@@ -21,6 +30,45 @@
     margin: 0px !important;
 }
 
+.Navigation {
+    text-align: center;
+    background: rgba(245, 245, 245, 0.966);
+    position: fixed;
+    margin-top: 0vh;
+    height: 12vh;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.425);
+    width: 100vw;
+    z-index: 20;
+  }
+
+.Navigation button {
+    background-color: rgba(255, 255, 255, 0);
+    border-color: white;
+    border-style: none;
+}
+
+.Navigation button:hover {
+    background-color: rgba(255, 255, 255, 0.705);
+    border-color: white;
+    border-style: none;
+}
+
+.Navigation ul {
+    list-style: none;
+    float: right;
+    background-color: rgba(255, 255, 255, 0);
+    border-color: white;
+    border-style: none;
+}
+
+.Navigation li {
+    float: right;
+    margin-top: 4vh;
+    background-color: rgba(255, 255, 255, 0);
+    border-color: white;
+    border-style: none;
+}
+  
 .msg{
     font-family: 'Inter', sans-serif;
     font-size: 15px;

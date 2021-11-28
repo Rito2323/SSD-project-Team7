@@ -35,3 +35,14 @@ th{
     margin-left: 90%;
     margin-right: auto;
   }
+
+  .responseui {
+    text-align: center;
+    padding-top: 12vh;
+    background-image: url("../../heron.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: 10;
+    min-height: 100vh;
+  }

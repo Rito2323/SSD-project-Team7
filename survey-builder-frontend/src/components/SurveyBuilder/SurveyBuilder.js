@@ -6,8 +6,7 @@ import QuestionEditListBlock from './Questions/QuestionEditListBlock';
 import PreviewQuestionListBlock from './Questions/PreviewQuestionListBlock';
 import SurveyTile from '../Utility/SurveyTile';
 import Navigation from '../Navigation';
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
+
 
 const backendUri = "http://localhost:3000/";
 const frontendUri = "http://localhost:3001/";
@@ -17,10 +16,10 @@ const getAllSurveys = async (userEmail) => {
   const uri = backendUri + "surveys";
   var response = await fetch(uri)
   var surveys = await response.json();
-  var surveysForUser = surveys.filter((survey) => survey.CreatedBy == userEmail);
-  console.log("SURVEYS FETCHED For User : ");
-  console.log(surveysForUser);
-  return surveysForUser;
+  // var surveysForUser = surveys.filter((survey) => survey.CreatedBy == userEmail);
+  // console.log("SURVEYS FETCHED For User : ");
+  // console.log(surveys);
+  return surveys;
 }
 
 const getData = () => {
@@ -109,6 +108,9 @@ const updateQuestionDataInServer = ({SurveyTile, questionData}, oldSurvey, setIs
 }
 
 const getNewSurveyNo = (surveys) => {
+    // Calculating new survey no.
+    console.log("Calculating new survey no.");
+    console.log(surveys);
     var max = 0;
     for(var i = 0; i < surveys.length; i++) {
       if(surveys[i].SurveyNo > max) {
@@ -119,7 +121,7 @@ const getNewSurveyNo = (surveys) => {
 }
 
 function SurveyBuilder(props) {
-  const [titleValue, setTitleValue] = useState("Untitled Form");
+  const [titleValue, setTitleValue] = useState(props.SurveyTitle);
   const [questionData, setQuestionData] = useState({Questions: []});
   const [surveys, setSurveys] = useState([]);
   const [mode, setMode] = useState("EDIT");
@@ -137,7 +139,7 @@ function SurveyBuilder(props) {
 
   useEffect(() => {
   if (surveys.length == 0) {
-     // getDataFromBackEnd();
+     getDataFromBackEnd();
     }
   }, [surveys, isSurveySelected]);
 
@@ -161,8 +163,10 @@ function SurveyBuilder(props) {
   currentUser={userName}/>
   surveyTiles.push(<li>{createSurveyTile}</li>)
 
-  for(var i = 0; i < surveys.length; i++) {
-    const surveyTileComponent = <SurveyTile survey={{...surveys[i]}}
+  const filteredSurveys = surveys.filter((survey) => survey.CreatedBy == userName);
+
+  for(var i = 0; i < filteredSurveys.length; i++) {
+    const surveyTileComponent = <SurveyTile survey={{...filteredSurveys[i]}}
     setIsSurveySelected={setIsSurveySelected}
     setQuestionData={setQuestionData}
     setCurrentSurvey={setCurrentSurvey}
