@@ -27,6 +27,7 @@ import {Link} from 'react-router-dom'
 //    }
 
 const backendUri = "http://localhost:3000/";
+const frontendUri = "http://localhost:3001/";
 
 const delete_survey = (surveyNo, rerender) => {
     if (window.confirm('Are you sure you want to delete this survey?')) {
@@ -44,6 +45,15 @@ const delete_survey = (surveyNo, rerender) => {
     } else {
         // Do nothing!
     }
+}
+
+const copy_survey_link = (surveyNo, rerender) => {
+const survey_link = frontendUri + "survey/" + surveyNo
+  /* Copy the text inside the text field */
+  navigator.clipboard.writeText(survey_link);
+
+  /* Alert the copied text */
+  alert("Survey link is copied to clipboard!");
 }
 
 const getNewSurvey = (newSurveyNo, user) => {
@@ -100,9 +110,14 @@ function SurveyTile(props) {
                     </td>
                     {props.newSurveyNo == undefined ?
                         <td className="delete-survey-button-cell">
+                            <div className={"vertical-div"}>
                             <button title="Delete Survey" className="delete-survey-button" onClick={(e) => {
                                 delete_survey(survey.SurveyNo, props.rerender);
                             }}>X</button>
+                            <button title="Copy Survey Link" className="delete-survey-button" onClick={(e) => {
+                                copy_survey_link(survey.SurveyNo, props.rerender);
+                            }}><img className={"link-icon"} src="https://img.icons8.com/ios/50/000000/link--v2.png"/></button>
+                            </div>
                         </td> : <></>}
                 </tr>
             </tbody>

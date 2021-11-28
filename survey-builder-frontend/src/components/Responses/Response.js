@@ -54,6 +54,16 @@ function JsonDataDisplay(props){
   const [Questions, setQuestions] = useState([])
   const [responses, setResponses] = useState([])
   const initial_Ques = []
+  // const responses_trial = [{
+  //         "SurveyNo": 18,
+  //         "CreatedBy" : "Shaon@students.iiit.ac.in",
+  //         "Participant" : "user@research.iiit.ac.in",
+  //         "Answers" : {
+  //           "Question1":"1000",
+  //           "Question2":"Good",
+  //           "Question3":"speed, picture quality, buffering",
+  //           "Question4":"4,3,2,1",
+  //         }}];
   if(responses.length > 0) {
     const sample_count = Object.keys(responses[0].Answers).length
     for( var i=0;i<sample_count;i++){
@@ -71,7 +81,8 @@ function JsonDataDisplay(props){
       var filtered_responses = responses.filter((response)=>response["SurveyNo"] == props.surveyNo)
       setResponses(filtered_responses);
   }
-
+  console.log("RESPONSES")
+  console.log(responses)
   const DisplayData=responses.map(
       (info)=>{
       const initial_res = [] 

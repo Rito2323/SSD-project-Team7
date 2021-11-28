@@ -33,6 +33,7 @@ function MultiLikertPreview(props) {
   const rows = [];
   // const scales = [];
   const scalesRowData = [];
+  var ans = ""
   if (props["Options"] && props["Options"].length > 0) {
     // scales = props["Options"][0]["levels"];
     scalesRowData.push(<td></td>);
@@ -49,7 +50,12 @@ function MultiLikertPreview(props) {
               var ques = getQuestionFromProps(props);
               var optionIndex = e.target.id.split('_')[0];
               var key = getQuestionHeaderKey(ques,props["Options"][optionIndex]["name"]);
-              props.onValueChange("Question"+ (props.QuestionNo)+"_"+props["Options"][optionIndex]["name"], e.target.value);
+              if(ans == ""){
+                ans = e.target.value;
+              }else {
+                ans = ans + "," + e.target.value;
+              }
+              props.onValueChange("Question"+(props.QuestionNo), ans);
             }
           }} />
         </td>)

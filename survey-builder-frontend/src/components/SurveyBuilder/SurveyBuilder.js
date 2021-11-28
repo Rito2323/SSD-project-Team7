@@ -84,8 +84,14 @@ const addSurveyDataInServer = (data, oldSurvey, setIsSurveySelected) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({...newSurveyBody})
-  }).then(()=>{alert("New Survey Saved Successfully!\n Survey url : " + frontendUri + "survey/" + oldSurvey["SurveyNo"]);
-  setIsSurveySelected(false);
+  }).then((res)=>{
+    if(res.status == 200) {
+      alert("New Survey Saved Successfully!\n Survey url : " + frontendUri + "survey/" + oldSurvey["SurveyNo"]);
+      setIsSurveySelected(false);
+    } else {
+      alert("There was some problem while saving the survey! Please make sure all the details are filled.");      
+    }
+
 }).catch(()=>{alert("There was some problem while saving the survey! Please make sure all the details are filled.");})
 }
 
@@ -133,7 +139,7 @@ function SurveyBuilder(props) {
   const [isSurveySelected, setIsSurveySelected] = useState(false);
   const [currentSurvey, setCurrentSurvey] = useState({});
   const [isNewSurvey, setIsNewSurvey] = useState(false);
-  const [toggle, setToggle] = useState(true);
+  const [rerender_key, setReRenderKey] = useState(1);
 
   const userName = localStorage.getItem("currentUser"); // NEED to get this from login
 
@@ -144,9 +150,9 @@ function SurveyBuilder(props) {
     }, []);
 
   useEffect(() => {
-  if (surveys.length == 0) {
+    // if (surveys.length == 0) {
      getDataFromBackEnd();
-    }
+    // }
   }, [surveys, isSurveySelected]);
 
   const getDataFromBackEnd = async () => {
@@ -159,7 +165,7 @@ function SurveyBuilder(props) {
   const surveyTiles = [];
 
   const rerender = () => {
-    setToggle(!toggle);
+    setReRenderKey(rerender_key + 1);
   }
 
   const createSurveyTile = <SurveyTile newSurveyNo={newSurveyNo}
@@ -205,7 +211,7 @@ function SurveyBuilder(props) {
         </Modal.Footer>
       </Modal> */}
     <Navigation/>
-    <div className="App SurveyBuilder">
+    <div key={rerender_key} className="App SurveyBuilder">
        {!isSurveySelected ? <>
         <ul className="survey-tile-list">
           {surveyTiles}

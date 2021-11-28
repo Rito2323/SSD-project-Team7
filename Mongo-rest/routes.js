@@ -59,7 +59,9 @@ app.get("/surveys/:devmail", async (request, response) => {
 
 
 app.delete("/delete/survey/:SurveyNo", async (request, response) => {
-  const surveys = await SurveyModel.findOneAndDelete({ SurveyNo: request.params.SurveyNo })
+  const surveys = await SurveyModel.findOneAndDelete({ SurveyNo: request.params.SurveyNo });
+  // need to delete the responses too.
+  await ResponseModel.deleteMany({ SurveyNo: request.params.SurveyNo });
   try {
     response.send(surveys);
   } catch (error) {

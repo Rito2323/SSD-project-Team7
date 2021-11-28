@@ -77,15 +77,8 @@ function ParticipantView(props) {
             let noOfQues = survey["Questions"].length;
             var answers = {};
             for (var i = 0; i < noOfQues; i++) {
-                if (survey["Questions"][i]["QuestionType"] == 4) {
-                    for (var j = 0; j < survey["Questions"][i]["Options"].length; j++) {
-                        const quesHeaderKey = "Question" + (i+1) +"_"+ survey["Questions"][i]["Options"][j]["name"];
-                        answers[quesHeaderKey] = "";
-                    }
-                } else {
-                    const quesHeaderKey = "Question" + survey["Questions"][i];
+                    const quesHeaderKey = "Question" + (i + 1);          
                     answers[quesHeaderKey] = "";
-                }
             }
             response["Answers"] = answers;
             setResponseData(response);
