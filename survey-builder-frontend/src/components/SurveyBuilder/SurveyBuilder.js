@@ -84,9 +84,9 @@ const addSurveyDataInServer = (data, oldSurvey, setIsSurveySelected) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({...newSurveyBody})
-  }).then(()=>{alert("New Survey Saved Successfully!\n Survey url : " + frontendUri + "/survey/" + oldSurvey["SurveyNo"]);
+  }).then(()=>{alert("New Survey Saved Successfully!\n Survey url : " + frontendUri + "survey/" + oldSurvey["SurveyNo"]);
   setIsSurveySelected(false);
-})
+}).catch(()=>{alert("There was some problem while saving the survey! Please make sure all the details are filled.");})
 }
 
 const updateQuestionDataInServer = (data, oldSurvey, setIsSurveySelected) => {
@@ -133,6 +133,7 @@ function SurveyBuilder(props) {
   const [isSurveySelected, setIsSurveySelected] = useState(false);
   const [currentSurvey, setCurrentSurvey] = useState({});
   const [isNewSurvey, setIsNewSurvey] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   const userName = localStorage.getItem("currentUser"); // NEED to get this from login
 
@@ -157,13 +158,18 @@ function SurveyBuilder(props) {
 
   const surveyTiles = [];
 
+  const rerender = () => {
+    setToggle(!toggle);
+  }
+
   const createSurveyTile = <SurveyTile newSurveyNo={newSurveyNo}
   setIsSurveySelected={setIsSurveySelected}
   setQuestionData={setQuestionData}
   setTitle={setTitleValue}
   setCurrentSurvey={setCurrentSurvey}
   setIsNewSurvey={setIsNewSurvey}
-  currentUser={userName}/>
+  currentUser={userName}
+  rerender={rerender}/>
   surveyTiles.push(<li>{createSurveyTile}</li>)
 
   const filteredSurveys = surveys.filter((survey) => survey.CreatedBy == userName);
@@ -175,7 +181,8 @@ function SurveyBuilder(props) {
     setTitle={setTitleValue}
     setCurrentSurvey={setCurrentSurvey}
     setIsNewSurvey={setIsNewSurvey}
-    currentUser={userName}/>;
+    currentUser={userName}
+    rerender={rerender}/>;
     surveyTiles.push(<li>{surveyTileComponent}</li>)
   }
 
@@ -228,9 +235,11 @@ function SurveyBuilder(props) {
         <button className="SaveButton" onClick={(e) => {
           if(isNewSurvey) {
             addSurveyDataInServer({SurveyTitle: titleValue, QuestionData: questionData}, currentSurvey, setIsSurveySelected);
+            rerender();
           }
           else {
             updateQuestionDataInServer({SurveyTitle: titleValue, QuestionData: questionData}, currentSurvey, setIsSurveySelected);
+            rerender();
           }
           }}>SAVE</button>
         <button className="DiscardButton" onClick={(e)=> {

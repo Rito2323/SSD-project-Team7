@@ -70,8 +70,10 @@ function MultiLikertPreview(props) {
       <p>{props.QuestionNo}. {initialQuestionText}</p>
       <br />
       <table>
+        <tbody>
         <tr>{scalesRowData}</tr>
         {rows}
+        </tbody>
       </table>
       {/* <InputGroup className="mb-3">
             <InputGroup.Checkbox aria-label="Checkbox for following text input" />

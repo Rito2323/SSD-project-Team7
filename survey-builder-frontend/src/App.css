@@ -290,6 +290,24 @@
   position: relative
 }
 
+.survey-tile-add {
+  width: 300px;
+  height: 300px;
+  margin: 0.5vw;
+  background-color: rgba(255, 255, 255, 0);
+  position: relative;
+  border-width: 0px;
+}
+
+.survey-tile-add:hover {
+  width: 300px;
+  height: 300px;
+  margin: 0.5vw;
+  background-color: rgba(246, 249, 250, 0.246);
+  border-radius: 2%;
+  position: relative 
+}
+
 .survey-tile:hover {
   width: 300px;
   height: 300px;
@@ -318,7 +336,22 @@ button:hover {
   width: fit-content;
 }
 
+.delete-survey-button {
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgba(255, 255, 255, 0);
+  font-size: 30px;
+  color: white;
+}
 
+.delete-survey-button:hover {
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgba(255, 255, 255, 0);
+  font-size: 35px;
+}
+
+.delete-survey-button-cell {
+  vertical-align: top;
+}
 
 .QuestionTypeBox select {
   width: 40vw;
