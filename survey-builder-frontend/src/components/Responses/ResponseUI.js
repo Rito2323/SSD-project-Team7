@@ -52,8 +52,9 @@ function Surveyno(props) {
     return (
         <>{isSurveyNoSelected ? <JsonDataDisplay/> :
             <>
+            <div className="surveyWrapper">
             <form className="survey" action="" onSubmit={submitForm}>
-            <div>
+            <div className="survey-text">
                 <label className="email" hrtmlFor="email">Select the survey number</label><br></br>
 
                 {/* <input type="radio" id="s1" name="S1" value="1" onClick={(e) => setSurveyNo(e.target.value)} />
@@ -64,10 +65,10 @@ function Surveyno(props) {
                 <label> Survey 3</label><br /><br /> */}
                 {surveyNos}
             </div>
-            <div className="btn">
-                <button type="submit">Show</button>
+            <div>
+                <button className="survey-btn" type="submit">Show</button>
             </div>
-        </form></>
+        </form></div></>
         }</>);
 }
 export default Surveyno;
