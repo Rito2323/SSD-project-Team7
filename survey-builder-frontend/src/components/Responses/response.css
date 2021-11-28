@@ -34,7 +34,7 @@ th{
     cursor: pointer;
   }
   
-  .survey{
+  /* .survey{
     position: relative;
     height: 45vh;
     margin-top: 8vh;
@@ -47,7 +47,7 @@ th{
     margin-top: 33%;
     margin-left: 90%;
     margin-right: auto;
-  }
+  } */
 
   .responseui {
     text-align: center;
