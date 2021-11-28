@@ -151,9 +151,6 @@ function SurveyBuilder(props) {
   const getDataFromBackEnd = async () => {
     var surveyData = await getAllSurveys(userName);
     setSurveys(surveyData);
-    // var data = await getData();
-    // console.log(data);
-    // setQuestionData(data);
   }
 
   const newSurveyNo = getNewSurveyNo(surveys);

@@ -4,7 +4,7 @@ function PreviewSurveyTitleBlock(props) {
   const titleVal = props.titleVal;
   return (
     <div className="SurveyTitleBlock">
-        <input value={titleVal}/>
+        <input contentEditable={false} value={titleVal}/>
     </div>
   );
 }

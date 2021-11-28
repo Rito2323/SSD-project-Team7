@@ -45,15 +45,26 @@ function SingleSelectPreview(props) {
 // }
 
 const optionsElements = initialOptions.map((option) => {
-    return <>
-        <input className="questionCheckBox" type="radio" id="option1" name="option" value={option} onChange={(e) => {
+    return <>{props.isDisabled && props.answer ? 
+        <><input className="questionCheckBox" type="radio" id="option1" name="option" value={option} onChange={(e) => {
             if (props.onValueChange != undefined) {
                 var ques = getQuestionFromProps(props);
                 var key = getQuestionHeaderKey(ques);
                 props.onValueChange("Question"+(props.QuestionNo), e.target.value);
             }
         }} />
-        <label className="questionOptionLabel" for="option">{option}</label><br />
+        <label className="questionOptionLabel" for="option">{option}</label><br /></>
+        :<> <input className="questionCheckBox" type="radio" id="option1" name="option" value={option} onChange={(e) => {
+            if (props.onValueChange != undefined) {
+                var ques = getQuestionFromProps(props);
+                var key = getQuestionHeaderKey(ques);
+                props.onValueChange("Question"+(props.QuestionNo), e.target.value);
+            }
+        }} />
+        <label className="questionOptionLabel" for="option">{option}</label><br /></>
+    
+    }
+        
     </>
 })
 return (

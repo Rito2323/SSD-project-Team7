@@ -52,7 +52,7 @@ function Surveyno(props) {
     return (
         <>
         <Navigation/>
-        {isSurveyNoSelected ? <JsonDataDisplay/> :
+        {isSurveyNoSelected ? <JsonDataDisplay surveyNo={Surveyno}/> :
             <div className="responseui">
             <form className="survey" action="" onSubmit={submitForm}>
             <div>

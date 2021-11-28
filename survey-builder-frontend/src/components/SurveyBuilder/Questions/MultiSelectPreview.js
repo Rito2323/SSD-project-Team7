@@ -58,31 +58,14 @@ function MultiSelectPreview(props) {
   const [optionsState, setOptions] = useState(initialOptions);
   return (
     <div className="MultiSelectPreview">
-        {/* <br/>
-        <label className="QuestionEditContentItem">Question Text:</label>
-        <br/> */}
         <p>{props.QuestionNo}. {initialQuestionText}</p>
         <br/>
         {optionsElements}
-        {/* <InputGroup className="mb-3">
-            <InputGroup.Checkbox aria-label="Checkbox for following text input" />
-            <FormControl aria-label="Text input with checkbox" />
-        </InputGroup> */}
-        {/* <ChangeableList
-            title="Options : "
-            addButtonTitle="Add option"
-            list={optionsState}
-            updateList={(list)=>{
-              setOptions([...list]);
-            }}
-        /> */}
     </div>
   );
 }
 
 const getQuestionHeaderKey = (question, optionName = undefined) => {
-  //TODO : check for error.
-  // const question = questions[questionNo - 1];
   let quesStr = "";
   if (optionName == undefined) {
       quesStr = question["QuestionText"];

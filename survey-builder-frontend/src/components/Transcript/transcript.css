@@ -5,7 +5,7 @@
     --clr: #2D3748
 }
 
-.transcript-div{
+/* .transcript-div{
     text-align: center;
     padding-top: 12vh;
     background-image: url("../../heron.png");
@@ -14,7 +14,7 @@
     background-attachment: fixed;
     z-index: 10;
     min-height: 100vh;
-}
+} */
 
 .h1{
     font-family: 'Inter', sans-serif;

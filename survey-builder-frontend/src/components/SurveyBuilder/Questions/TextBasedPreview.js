@@ -20,56 +20,48 @@ import '../../../App.css';
 */
 
 const getQuestionHeaderKey = (question, optionName = undefined) => {
-    //TODO : check for error.
-    let quesStr = "";
-    if (optionName == undefined) {
-        quesStr = question["QuestionText"];
-    } else {
-        quesStr = question["QuestionText"] + "-" + optionName;
-    }
-    return quesStr;
+  let quesStr = "";
+  if (optionName == undefined) {
+    quesStr = question["QuestionText"];
+  } else {
+    quesStr = question["QuestionText"] + "-" + optionName;
+  }
+  return quesStr;
 }
 
 function TextBasedPreview(props) {
   var initialQuestionText = props["QuestionText"];
-  var initialOptions = ["","",""];
+  var initialOptions = ["", "", ""];
   return (
     <div className="MultiSelectPreview">
-        {/* <br/>
+      {/* <br/>
         <label className="QuestionEditContentItem">Question Text:</label>
         <br/> */}
-        <p>{props.QuestionNo}. {initialQuestionText}</p>
-        <br/>
-        <textarea onChange={(e)=>{
-            if(props.onValueChange != undefined) {
-                var ques = getQuestionFromProps(props);
-                var key = getQuestionHeaderKey(ques);
-                props.onValueChange("Question"+(props.QuestionNo), e.target.value);
-            }
+      <p>{props.QuestionNo}. {initialQuestionText}</p>
+      <br />
+      {props.isDisabled && props.answer ?
+        <textarea value={props.answer} contentEditable={false}></textarea>
+        :
+        <textarea onChange={(e) => {
+          if (props.onValueChange != undefined) {
+            var ques = getQuestionFromProps(props);
+            var key = getQuestionHeaderKey(ques);
+            props.onValueChange("Question" + (props.QuestionNo), e.target.value);
+          }
         }}></textarea>
-        {/* <InputGroup className="mb-3">
-            <InputGroup.Checkbox aria-label="Checkbox for following text input" />
-            <FormControl aria-label="Text input with checkbox" />
-        </InputGroup> */}
-        {/* <ChangeableList
-            title="Options : "
-            addButtonTitle="Add option"
-            list={optionsState}
-            updateList={(list)=>{
-              setOptions([...list]);
-            }}
-        /> */}
+      }
+
     </div>
   );
 }
 
 const getQuestionFromProps = (props) => {
-    return  {
-      QuestionType: props.QuestionType,
-      QuestionNo: props.QuestionNo,
-      QuestionText: props.QuestionText,
-      Options: props.Options
-    }
+  return {
+    QuestionType: props.QuestionType,
+    QuestionNo: props.QuestionNo,
+    QuestionText: props.QuestionText,
+    Options: props.Options
   }
+}
 
 export default TextBasedPreview;

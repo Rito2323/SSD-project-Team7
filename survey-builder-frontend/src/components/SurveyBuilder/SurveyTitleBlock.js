@@ -3,7 +3,7 @@ import '../../App.css';
 function SurveyTitleBlock(props) {
   const titleVal = props.titleVal;
   return (
-    <div className="SurveyTitleBlock" tabIndex = "-1">
+    <div className="SurveyTitleBlock" tabIndex = "-1" onContextMenu>
         <input value={titleVal}
                onChange={props.handleTitleChange} />
     </div>

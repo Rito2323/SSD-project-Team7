@@ -8,32 +8,32 @@ import {useState, useEffect} from 'react';
 const backendUri = "http://localhost:3000/";
 
 
-const sample =[ 
-    {   
-      "SurveyNo": 1,
-      "CreatedBy" : "Gargi@students.iiit.ac.in",
-      "Participant" : "Visha;@students.iiit.ac.in",
-      "Answers" : {
-        "Q1":"A1, A2, A3",
-        "Q2":"A2",
-        "Q3":"A3",
-        "Q4":"A4",
-        "Q5":"A10"
-        }
-      },
-      {
-      "SurveyNo": 1,
-      "CreatedBy" : "Gargi@students.iiit.ac.in",
-      "Participant" : "Yash@students.iiit.ac.in",
-      "Answers" : {
-        "Q1":"A5",
-        "Q2":"A6",
-        "Q3":"A7",
-        "Q4":"A8",
-        "Q5":"A11"
-      }  
-    }
-  ]
+// const sample =[ 
+//     {   
+//       "SurveyNo": 1,
+//       "CreatedBy" : "Gargi@students.iiit.ac.in",
+//       "Participant" : "Visha;@students.iiit.ac.in",
+//       "Answers" : {
+//         "Q1":"A1, A2, A3",
+//         "Q2":"A2",
+//         "Q3":"A3",
+//         "Q4":"A4",
+//         "Q5":"A10"
+//         }
+//       },
+//       {
+//       "SurveyNo": 1,
+//       "CreatedBy" : "Gargi@students.iiit.ac.in",
+//       "Participant" : "Yash@students.iiit.ac.in",
+//       "Answers" : {
+//         "Q1":"A5",
+//         "Q2":"A6",
+//         "Q3":"A7",
+//         "Q4":"A8",
+//         "Q5":"A11"
+//       }  
+//     }
+//   ]
 
   const getResponsesFromBackend = async () => {
     const dev_mail = localStorage.getItem("currentUser"); 
@@ -50,7 +50,7 @@ const sample =[
     return responses;
   }
   
-function JsonDataDisplay(){
+function JsonDataDisplay(props){
   const [Questions, setQuestions] = useState([])
   const [responses, setResponses] = useState([])
   const initial_Ques = []
@@ -68,7 +68,8 @@ function JsonDataDisplay(){
 
   const getDataFromBackEnd = async () => {
       var responses = await getResponsesFromBackend();
-      setResponses(responses);
+      var filtered_responses = responses.filter((response)=>response["SurveyNo"] == props.surveyNo)
+      setResponses(filtered_responses);
   }
 
   const DisplayData=responses.map(
