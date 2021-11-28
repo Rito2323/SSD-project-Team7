@@ -4,7 +4,9 @@ html {
 }
 
 body {
-  background-color: #ddd;
+  /* background-color: #ddd; */
+  background-image: url("IIITsunset.jpg");
+  height: 75.5vh;
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0;
