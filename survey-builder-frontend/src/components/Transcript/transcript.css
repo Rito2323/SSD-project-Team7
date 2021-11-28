@@ -26,7 +26,7 @@
     font-size: 15px;
     letter-spacing: -0.01em;
 }
-.btn {
+.transcriptButton {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     background-color: white;
@@ -42,11 +42,11 @@
     font-size: .875rem;
 }
 
-.btn:hover{
+.transcriptButton:hover{
     background-color: var(--btn);
     color: white;
     border-color: var(--btn);
-}
+} */
 
 .dense-btn{
     font-family: 'Inter', sans-serif;
