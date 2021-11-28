@@ -12,6 +12,9 @@
 
 .loginWrapper {
   background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("./IIITsunset.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   min-height: 100vh;
   text-align: center;
   position: relative;
@@ -95,8 +98,8 @@
 }
 
 .SurveyBuilder {
-  padding-top: 12vh;
-  background-image: url("heron.png");
+  padding-top: 20vh;
+  background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("./IIITsunset.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -108,7 +111,7 @@
   position: relative;
   height: 15vh;
 /*  margin-top: 20vh;*/
-  background-color: rgb(200, 200, 200, 0.6);
+  background-color: rgb(200, 200, 200, 0.3);
   width: 45vw;
   margin-left: auto;
   margin-right: auto;
@@ -128,7 +131,7 @@
   padding-top: 30px;
   padding-bottom: 40px;
   margin-top: 8vh;
-  background-color: rgb(200, 200, 200, 0.6);
+  background-color: rgb(200, 200, 200, 0.3);
   margin-left: auto;
   margin-right: auto;
   text-align: left;
@@ -137,56 +140,70 @@
   color: #fff;
 }
 
+.buttonWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  align-items: center;
+}
 
 .down-button {
   background-color: rgba(0, 0, 0, 0);
-  background-image: url("./icons/down.png");
+  background-image: url("./downIcon.png");
   background-size: contain;
   background-repeat: no-repeat;
   width: 1.5vw;
   height: 1.5vw;
-  margin-left: 0.5vw;
+  margin-left: 2.5vw;
   border-color: rgba(255, 255, 255, 0);
 }
 
 .up-button {
   background-color: rgba(0, 0, 0, 0);
-  background-image: url("./icons/up.png");
+  background-image: url("./upIcon.png");
   background-size: contain;
   background-repeat: no-repeat;
   width: 1.5vw;
   height: 1.5vw;
-  margin-left: 0.5vw;
+  margin-left: 2.5vw;
   border-color: rgba(255, 255, 255, 0);
 }
 
 .del-button {
   background-color: rgba(0, 0, 0, 0);
-  background-image: url("./icons/delete.png");
+  background-image: url("./deleteIcon.png");
   background-size: contain;
   background-repeat: no-repeat;
-  width: 1.5vw;
-  height: 1.5vw;
-  margin-left: 0.5vw;
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-left: 2.5vw;
   border-color: rgba(255, 255, 255, 0);
 }
 
 .add-button {
-  background-image: url("./icons/add.png");
+  background-image: url("./addIcon.png");
   background-color: rgba(245, 245, 245, 0);
   background-size: contain;
   background-repeat: no-repeat;
   width: 3.5vw;
   height: 3.5vw;
   margin-top: 2vh;
-  border-color: rgba(255, 255, 255, 0);
+  border: none;
   margin-left: 48vw;
+}
+
+.questionNumber {
+  font-size: 20px;
+}
+
+.topmargin {
+  font-size: 16px;
 }
 
 .close-button{
   background-color: rgba(220, 0, 0, 0.8);
   position: absolute;
-  right: 0px;
+  right: 10px;
   top: 10px;
   width: 1.5vw;
   height: 1.5vw;
@@ -242,9 +259,13 @@ button:hover {
   margin-right: auto;
   width: fit-content;
 }
+
+
+
 .QuestionTypeBox select {
   width: 40vw;
-  height: 3.5vh;
+  height: 5vh;
+  margin-top: 8px;
 }
 
 .QuestionEditContentMaxWidth {
@@ -256,8 +277,8 @@ button:hover {
   max-width: 40vw;
   max-height: 50vh;
   overflow-y: scroll;
-  height: 3.5vh;
-  margin-top: 2vh;
+  height: 4vh;
+  margin-top: 8px;
 }
 
 .leftmargin {
@@ -285,20 +306,6 @@ button:hover {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.MatrixLikert input {
-   font-family: Geneva;
-   width: 20vw;
-   border-radius: 2%;
-   margin-top: 2vh;
-   background-color: #eee;
-}
-
-.MatrixLikert button {
-  margin: 2px;
-  background-color: #eee;
-  border-style: none;
-}
-
 .SurveyTitleBlock input {
    font-size: xx-large;
    font-family: Geneva;
@@ -317,11 +324,11 @@ button:hover {
 
 .Navigation {
   text-align: center;
-  background: rgba(245, 245, 245, 0.966);
+  background: rgb(221, 216, 216);
   position: fixed;
   margin-top: 0vh;
   height: 12vh;
-  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.425);
+  /* box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.425); */
   width: 100vw;
   z-index: 20;
 }
@@ -385,6 +392,10 @@ button:hover {
   border-width: 3px;
   border-style: solid;
 } */
+
+p {
+  margin-bottom: 8px;
+}
 
 .ParticipantView input {
   color: rgb(5, 8, 5);
@@ -473,7 +484,7 @@ button:hover {
   font-family: Geneva;
   text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
   margin-top:50px;
-  margin-left: 370px;
+  margin-left: 33%;
   margin-bottom: 100px;
   padding: 10px;
   border-radius: 4px;
@@ -488,7 +499,7 @@ button:hover {
   font-family: Geneva;
   text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
   margin-top:50px;
-  margin-left: 71px;
+  margin-left: 3%;
   margin-bottom: 100px;
   padding: 10px;
   border-radius: 4px;
@@ -503,7 +514,7 @@ button:hover {
   font-family: Geneva;
   text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
   margin-top:50px;
-  margin-left: 71px;
+  margin-left: 3%;
   margin-bottom: 100px;
   padding: 10px;
   border-radius: 4px;
@@ -516,4 +527,35 @@ button:hover {
 
 .App-link {
   color: #61dafb;
+}
+
+.ChangeableList {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 40vw;
+    height: fit-content;
+    font-size: calc(10px + 1vmin);
+}
+
+.ChangeableList input {
+    font-size: calc(10px + 1vmin);
+    width: 25vw;
+    margin-top: 1vw;
+    color: #555;
+    padding: 4pt;
+}
+
+.clbutton {
+  width: 100px;
+  height: 40px;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+  background-color: rgb(200, 200, 200, 0.6);
+  color: white;
+}
+
+.ChangeableList button {
+  font-size: calc(10px + 1vmin);
+  border: none;
+  border-radius: 3px;
 }

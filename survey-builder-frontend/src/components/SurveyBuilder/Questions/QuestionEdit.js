@@ -62,7 +62,7 @@ function QuestionEdit(props) {
     <div className="QuestionEdit" tabIndex = "-1">
       <div className="QuestionTypeBox">
         <br />
-        <p>{props.QuestionNo}<button onClick={(e)=>{
+        <p className="questionNumber">{props.QuestionNo}<button onClick={(e)=>{
             {props.deleteQuestion(props.QuestionNo-1)}         
         }} className="close-button"><img src="./remove.svg"/></button></p><label for="qTypeLabel" className="topmargin">Question Type:</label>
         <br />
