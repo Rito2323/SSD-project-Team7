@@ -34,41 +34,44 @@
 
 .Navigation {
     text-align: center;
-    background: rgba(245, 245, 245, 0.966);
+    background: rgb(221, 216, 216);
     position: fixed;
     margin-top: 0vh;
     height: 12vh;
-    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.425);
+    /* box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.425); */
+    box-shadow: 0px 0px 20px 0 #0000002c;
     width: 100vw;
     z-index: 20;
   }
 
 .Navigation button {
     background-color: rgba(255, 255, 255, 0);
-    border-color: white;
+    color: #555;
+    font-size: 18px;
+    width: auto;
+    height: 40px;
+    border-radius: 3px;
     border-style: none;
+    padding: 10px;
 }
 
 .Navigation button:hover {
-    background-color: rgba(255, 255, 255, 0.705);
-    border-color: white;
-    border-style: none;
+    border-style: solid;
+    border-color: rgb(221, 216, 216);
+    border-bottom: rgb(194, 149, 37), solid, 3px;
+    text-shadow: 0 0.1rem 0.1rem rgba(25, 25, 25, 0.4);   
 }
 
 .Navigation ul {
     list-style: none;
-    float: right;
-    background-color: rgba(255, 255, 255, 0);
-    border-color: white;
-    border-style: none;
+    /* float: right; */
+    display: flex;
+    flex-direction: row;
 }
 
 .Navigation li {
-    float: right;
-    margin-top: 4vh;
-    background-color: rgba(255, 255, 255, 0);
-    border-color: white;
-    border-style: none;
+    margin-top: 1.5vh;
+    padding-right: 20px;
 }
   
 .msg{
