@@ -1,4 +1,6 @@
 import '../../App.css';
+import plus from './green-plus-sign.png'
+import {Link} from 'react-router-dom'
 
 // Question: {
 //     QuestionType: 1,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
@@ -80,7 +82,7 @@ function SurveyTile(props) {
                                     <tr>
                                         <td rowSpan={2}>
                                             {props.newSurveyNo != undefined ?
-                                                <img className="survey-title-image" src="addIcon.png" />
+                                                <img className="survey-title-image" src={plus}/>
                                                 :
                                                 <img className="survey-title-image" src="survey_icon.png" />
                                             }
@@ -89,7 +91,7 @@ function SurveyTile(props) {
                                     <tr></tr>
                                     <tr>
                                         <td>
-                                            <label>{survey.SurveyTitle}</label>
+                                            <label  className="surveyTitleInTile">{survey.SurveyTitle}</label>
                                         </td>
                                     </tr>
                                 </tbody>
