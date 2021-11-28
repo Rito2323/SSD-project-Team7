@@ -49,7 +49,7 @@ function MultiLikertPreview(props) {
               var ques = getQuestionFromProps(props);
               var optionIndex = e.target.id.split('_')[0];
               var key = getQuestionHeaderKey(ques,props["Options"][optionIndex]["name"]);
-              props.onValueChange("Question"+to_string(props.QuestionNo), e.target.value);
+              props.onValueChange("Question"+ (props.QuestionNo), e.target.value);
             }
           }} />
         </td>)
