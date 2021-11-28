@@ -1,10 +1,12 @@
 # SURVEY BUILDER PROJECT
 
 ## BUILD AND RUN
+ 
+ - Run DB (Mongo DB)
 
  - Build and Run Backend\
         -> cd Mongo-rest\
-        -> npm install\
+        -> npm install \
         -> npm run build\
         -> node DB.js
 
