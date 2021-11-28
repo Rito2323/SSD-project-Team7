@@ -55,7 +55,7 @@ const isEmptyObject = (obj) => {
 
 function ParticipantView(props) {
     console.log("PARTICIPANT VIEW");
-    const participantEmail = localStorage.getItem("");  // NEED to get this from login
+    const participantEmail = localStorage.getItem("participantUser");
     const [survey, setSurvey] = useState({});
     const [isParticipantEmailEntered, setIsParticipantEmailEntered] = useState(false);
     const [responseData, setResponseData] = useState({});
@@ -111,7 +111,8 @@ function ParticipantView(props) {
                     setResponseData(resCopy);
             }} />);
         }
-        return (<>{!isParticipantEmailEntered ? <Login setParticipantEmail={setIsParticipantEmailEntered} surveyNo={survey["SurveyNo"]}/> :
+        return (<div className="ParticipantView">
+        {!isParticipantEmailEntered ? <Login setParticipantEmail={setIsParticipantEmailEntered} surveyNo={survey["SurveyNo"]}/> :
             <div className="QuestionEditListBlock">
             <PreviewSurveyTitleBlock titleVal={survey["SurveyTitle"]} />
             {questionsElements}
@@ -121,7 +122,7 @@ function ParticipantView(props) {
                 addResponseInServer(responseData);
             }}>SUBMIT</button>
         </div>
-        }</>)
+        }</div>)
     } else {
         return <><PreviewSurveyTitleBlock titleVal={"404: Survey not found."} /></>
     }

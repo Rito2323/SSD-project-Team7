@@ -40,13 +40,13 @@ function TextBasedPreview(props) {
         <br/> */}
         <p>{props.QuestionNo}. {initialQuestionText}</p>
         <br/>
-        <input type="text" onChange={(e)=>{
+        <textarea onChange={(e)=>{
             if(props.onValueChange != undefined) {
                 var ques = getQuestionFromProps(props);
                 var key = getQuestionHeaderKey(ques);
                 props.onValueChange(key, e.target.value);
             }
-        }}></input>
+        }}></textarea>
         {/* <InputGroup className="mb-3">
             <InputGroup.Checkbox aria-label="Checkbox for following text input" />
             <FormControl aria-label="Text input with checkbox" />
