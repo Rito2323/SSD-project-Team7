@@ -55,7 +55,6 @@ const isEmptyObject = (obj) => {
 
 function ParticipantView(props) {
     console.log("PARTICIPANT VIEW");
-    const participantEmail = localStorage.getItem("participantUser");
     const [survey, setSurvey] = useState({});
     const [isParticipantEmailEntered, setIsParticipantEmailEntered] = useState(false);
     const [responseData, setResponseData] = useState({});
@@ -64,7 +63,7 @@ function ParticipantView(props) {
     useEffect(() => {
         getDataFromBackEnd();
     }, []);
-
+    const participantEmail = localStorage.getItem("participantUser");
     useEffect(() => {
         if (!isEmptyObject(survey)) {
             const response = {
@@ -106,6 +105,8 @@ function ParticipantView(props) {
         for (var i = 0; i < noOfQues; i++) {
             questionsElements.push(<QuestionPreview key={i} {...survey["Questions"][i]} onValueChange={(questionKey, newAnswer)=>{
                 const resCopy = responseData;
+                console.log("rescpy : ")
+                console.log(resCopy)
                 if(resCopy != undefined && resCopy["Answers"] != undefined && resCopy["Answers"][questionKey] != undefined){}
                     resCopy["Answers"][questionKey] = newAnswer;
                     setResponseData(resCopy);
@@ -119,6 +120,8 @@ function ParticipantView(props) {
             <button className="submit-button" onClick={()=>{
                 console.log(responseData);
                 // call backend here
+                const participantEmail = localStorage.getItem("participantUser");
+                responseData["Participant"] = participantEmail;
                 addResponseInServer(responseData);
             }}>SUBMIT</button>
         </div>

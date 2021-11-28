@@ -49,7 +49,7 @@ function MultiSelectPreview(props) {
               }
               // console.log(e.target.value);
               // console.log(e.target.checked);
-              props.onValueChange(key, ans);
+              props.onValueChange("Question"+(props.QuestionNo), ans);
           }
         }}/>
         <label className="questionOptionLabel" for={props.QuestionText}>{option}</label><br/>

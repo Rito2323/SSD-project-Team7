@@ -68,7 +68,6 @@ function JsonDataDisplay(){
 
   const getDataFromBackEnd = async () => {
       var responses = await getResponsesFromBackend();
-      console.log(responses);
       setResponses(responses);
   }
 

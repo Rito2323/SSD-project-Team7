@@ -43,9 +43,15 @@ function SingleSelectEdit(props) {
         <ChangeableList
             title="Options : "
             addButtonTitle="Add option"
-            list={optionsState}
+            list={initialOptions}
             updateList={(list)=>{
-              setOptions([...list]);
+              var question = getQuestionFromProps(props);
+              question.Options = list.map((option)=>{return {
+                name : option,
+                levels : [""]
+              }})
+              // setOptions([...list]);
+              props.updateQuestion(question, question.QuestionNo - 1);
             }}
         />
     </div>

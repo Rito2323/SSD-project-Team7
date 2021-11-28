@@ -50,7 +50,7 @@ const optionsElements = initialOptions.map((option) => {
             if (props.onValueChange != undefined) {
                 var ques = getQuestionFromProps(props);
                 var key = getQuestionHeaderKey(ques);
-                props.onValueChange(key, e.target.value);
+                props.onValueChange("Question"+(props.QuestionNo), e.target.value);
             }
         }} />
         <label className="questionOptionLabel" for="option">{option}</label><br />

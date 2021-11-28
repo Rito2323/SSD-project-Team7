@@ -50,6 +50,7 @@ function SurveyTile(props) {
     }
 
     return (<button className="survey-tile" onClick={(e)=>{
+        props.setTitle(survey.SurveyTitle);
         props.setIsSurveySelected(true);
         props.setQuestionData({Questions: survey.Questions});
         props.setCurrentSurvey(survey);

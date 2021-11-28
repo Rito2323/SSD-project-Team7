@@ -44,7 +44,7 @@ function TextBasedPreview(props) {
             if(props.onValueChange != undefined) {
                 var ques = getQuestionFromProps(props);
                 var key = getQuestionHeaderKey(ques);
-                props.onValueChange(key, e.target.value);
+                props.onValueChange("Question"+(props.QuestionNo), e.target.value);
             }
         }}></textarea>
         {/* <InputGroup className="mb-3">

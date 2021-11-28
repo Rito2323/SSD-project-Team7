@@ -63,13 +63,18 @@ const getData = () => {
   ]}
 }
 
-const addSurveyDataInServer = ({SurveyTile, questionData}, oldSurvey, setIsSurveySelected) => {
+const addSurveyDataInServer = (data, oldSurvey, setIsSurveySelected) => {
   // Send update request
   const uri = backendUri + "add_survey";
+  console.log("oldSurvey");  
+  console.log(oldSurvey);  
+  console.log("data");  
+  console.log(data);
   const newSurveyBody = {
     ...oldSurvey,
-    SurveyTile: SurveyTile,
-    Questions : questionData["Questions"]
+    SurveyNo: oldSurvey.SurveyNo,
+    SurveyTitle: data.SurveyTitle,
+    Questions : data.QuestionData["Questions"]
   }
   console.log("NEW QUESTION");
   console.log(newSurveyBody);
@@ -84,15 +89,15 @@ const addSurveyDataInServer = ({SurveyTile, questionData}, oldSurvey, setIsSurve
 })
 }
 
-const updateQuestionDataInServer = ({SurveyTile, questionData}, oldSurvey, setIsSurveySelected) => {
+const updateQuestionDataInServer = (data, oldSurvey, setIsSurveySelected) => {
   // Send update request
   console.log("Inside updateQuestionDataInServer")
   const uri = backendUri + "update/survey/" + oldSurvey.SurveyNo;
   const newSurveyBody = {
+    ...oldSurvey,
     SurveyNo: oldSurvey.SurveyNo,
-    
-    SurveyTile: SurveyTile,
-    Questions : questionData["Questions"]
+    SurveyTitle: data.SurveyTitle,
+    Questions : data.QuestionData["Questions"]
   }
   console.log("NEW QUESTION");
   console.log(newSurveyBody);
@@ -158,6 +163,7 @@ function SurveyBuilder(props) {
   const createSurveyTile = <SurveyTile newSurveyNo={newSurveyNo}
   setIsSurveySelected={setIsSurveySelected}
   setQuestionData={setQuestionData}
+  setTitle={setTitleValue}
   setCurrentSurvey={setCurrentSurvey}
   setIsNewSurvey={setIsNewSurvey}
   currentUser={userName}/>
@@ -169,6 +175,7 @@ function SurveyBuilder(props) {
     const surveyTileComponent = <SurveyTile survey={{...filteredSurveys[i]}}
     setIsSurveySelected={setIsSurveySelected}
     setQuestionData={setQuestionData}
+    setTitle={setTitleValue}
     setCurrentSurvey={setCurrentSurvey}
     setIsNewSurvey={setIsNewSurvey}
     currentUser={userName}/>;
@@ -222,10 +229,10 @@ function SurveyBuilder(props) {
         }}>{mode == "PREVIEW" ? "EDIT" : "PREVIEW"}</button>
         <button className="SaveButton" onClick={(e) => {
           if(isNewSurvey) {
-            addSurveyDataInServer({SurveyTile: titleValue, questionData}, currentSurvey, setIsSurveySelected);
+            addSurveyDataInServer({SurveyTitle: titleValue, QuestionData: questionData}, currentSurvey, setIsSurveySelected);
           }
           else {
-            updateQuestionDataInServer({SurveyTile: titleValue, questionData}, currentSurvey, setIsSurveySelected);
+            updateQuestionDataInServer({SurveyTitle: titleValue, QuestionData: questionData}, currentSurvey, setIsSurveySelected);
           }
           }}>SAVE</button>
         <button className="DiscardButton" onClick={(e)=> {
