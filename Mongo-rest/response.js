@@ -53,9 +53,9 @@ const SurveyResponses = new mongoose.Schema({
           required: true,
         },
     
-    Response: {
-      type: [Answer],
-     
+    Answers: {
+      type: Map,
+      of: String
     },
 });
 

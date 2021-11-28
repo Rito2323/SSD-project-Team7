@@ -1,48 +1,89 @@
 import react from 'react';
 import React from 'react'
 //import React, { Component } from "react";
-import {  Table } from "semantic-ui-react";
-import 'response.css';
-import {useState} from 'react';
+// import {  Table } from "semantic-ui-react";
+import './response.css';
+import {useState, useEffect} from 'react';
+
+const backendUri = "http://localhost:3000/";
 
 
-const sample =[ 
-    {   
-      "SurveyNo": 1,
-      "CreatedBy" : "Gargi@students.iiit.ac.in",
-      "Participant" : "Visha;@students.iiit.ac.in",
-      "Answers" : {
-        "Q1":"A1, A2, A3",
-        "Q2":"A2",
-        "Q3":"A3",
-        "Q4":"A4",
-        "Q5":"A10"
-        }
-      },
-      {
-      "SurveyNo": 1,
-      "CreatedBy" : "Gargi@students.iiit.ac.in",
-      "Participant" : "Yash@students.iiit.ac.in",
-      "Answers" : {
-        "Q1":"A5",
-        "Q2":"A6",
-        "Q3":"A7",
-        "Q4":"A8",
-        "Q5":"A11"
-      }  
-    }
-  ]
-  
-function JsonDataDisplay(){
-  const [Questions, setQuestions] = useState([])
-  const sample_count = Object.keys(sample[0].Answers).length
-  const initial_Ques = []
-  for( var i=0;i<sample_count;i++){
-    initial_Ques.push(<th>Question{i+1}</th>)
+// const sample =[ 
+//     {   
+//       "SurveyNo": 1,
+//       "CreatedBy" : "Gargi@students.iiit.ac.in",
+//       "Participant" : "Visha;@students.iiit.ac.in",
+//       "Answers" : {
+//         "Q1":"A1, A2, A3",
+//         "Q2":"A2",
+//         "Q3":"A3",
+//         "Q4":"A4",
+//         "Q5":"A10"
+//         }
+//       },
+//       {
+//       "SurveyNo": 1,
+//       "CreatedBy" : "Gargi@students.iiit.ac.in",
+//       "Participant" : "Yash@students.iiit.ac.in",
+//       "Answers" : {
+//         "Q1":"A5",
+//         "Q2":"A6",
+//         "Q3":"A7",
+//         "Q4":"A8",
+//         "Q5":"A11"
+//       }  
+//     }
+//   ]
+
+  const getResponsesFromBackend = async () => {
+    const dev_mail = localStorage.getItem("currentUser"); 
+    const uri = backendUri + "responses" ;
+    var response = await fetch(uri)
+    var responses = await response.json();
+    console.log(responses);
+    responses = responses.filter((res)=>res["CreatedBy"] == dev_mail);
+    // console.log(surveys);
+    // var surveysForUser = surveys.filter((survey) => survey.CreatedBy == userEmail);
+    // console.log("SURVEYS FETCHED For User : ");
+    // console.log(surveysForUser);
+    // console.log(surveyNo)
+    return responses;
   }
+  
+function JsonDataDisplay(props){
+  const [Questions, setQuestions] = useState([])
+  const [responses, setResponses] = useState([])
+  const initial_Ques = []
+  // const responses_trial = [{
+  //         "SurveyNo": 18,
+  //         "CreatedBy" : "Shaon@students.iiit.ac.in",
+  //         "Participant" : "user@research.iiit.ac.in",
+  //         "Answers" : {
+  //           "Question1":"1000",
+  //           "Question2":"Good",
+  //           "Question3":"speed, picture quality, buffering",
+  //           "Question4":"4,3,2,1",
+  //         }}];
+  if(responses.length > 0) {
+    const sample_count = Object.keys(responses[0].Answers).length
+    for( var i=0;i<sample_count;i++){
+      initial_Ques.push(<th>Question{i+1}</th>)
+    }
+  }
+ 
 
+  useEffect(() => {
+    getDataFromBackEnd();
+  }, []);
 
-  const DisplayData=sample.map(
+  const getDataFromBackEnd = async () => {
+      var responses = await getResponsesFromBackend();
+      var filtered_responses = responses.filter((response)=>response["SurveyNo"] == props.surveyNo)
+      setResponses(filtered_responses);
+  }
+  console.log("RESPONSES")
+  console.log(responses)
+  const DisplayData=responses.map(
       (info)=>{
       const initial_res = [] 
         
@@ -61,7 +102,7 @@ function JsonDataDisplay(){
   )
 
   return(
-      <div>
+      <div className="responseui">
           <table className="table1 table-striped">
               
               <thead>

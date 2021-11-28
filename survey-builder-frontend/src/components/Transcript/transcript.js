@@ -1,5 +1,7 @@
 import React from 'react';
+import Navigation from '../Navigation';
 import './transcript.css';
+import '../../App.css';
 
 class Transcript extends React.Component {
 
@@ -90,12 +92,15 @@ class Transcript extends React.Component {
         let label;
         label = <p className="msg">{this.state.message}</p>
         return (
-            <div className="Transcript">
+            <>
+            <Navigation/>
+            <div className="App Transcript SurveyBuilder">
+                <div className="transcript-div">
                 <div>
                     <h1 className="h1">Transcript Generator</h1>
                     <p className="p">Converts the given audio/video file into transcript,</p>
                     <p className="p">which can be downloaded as a text file.</p>
-                    <input className="btn" type="file" onChange={this.onFileUpload} />
+                    <input className="transcriptButton" type="file" onChange={this.onFileUpload} />
                 </div>
                 <div>
                     <button className="dense-btn" onClick={this.generateTranscript}>
@@ -106,7 +111,8 @@ class Transcript extends React.Component {
                     </button>
                 </div>
                 {label}
-            </div>
+                </div>
+            </div></>
         );
     }
 }

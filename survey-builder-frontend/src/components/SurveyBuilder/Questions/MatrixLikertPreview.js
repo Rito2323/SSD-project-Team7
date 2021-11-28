@@ -5,7 +5,7 @@ import '../../../App.css';
 
 /**
   QuestionType: 1,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-  QuesionNo: 1, // Number
+  QuestionNo: 1, // Number
   QuestionText: "", //string
   Options: [ // list of Option
       {
@@ -21,55 +21,71 @@ import '../../../App.css';
 
 function MultiLikertPreview(props) {
   var initialQuestionText = props["QuestionText"];
-  var initialOptions = ["","",""];
+  var initialOptions = ["", "", ""];
 
-//   if(props["Options"] && props["Options"].length > 0) {
-//     initialOptions = [];
-//     for(var i = 0; i < props["Options"].length; i++) {
-//         initialOptions.push(props["Options"][i]["name"]);
-//     }
-//   }
+  //   if(props["Options"] && props["Options"].length > 0) {
+  //     initialOptions = [];
+  //     for(var i = 0; i < props["Options"].length; i++) {
+  //         initialOptions.push(props["Options"][i]["name"]);
+  //     }
+  //   }
 
-  rows = [];
-  scales = [];
-  if(props["Options"] && props["Options"].length > 0) {
-    scales = props["Options"][0][levels];
-    for(var i = 0; i < props["Options"].length; i++) {
-        options = []
-        for(var j=0; j < props["Options"][i]["levels"].length; i++) {
-            options.push(<td>
-                <input type="radio" value={props["Options"][i]["levels"][j]}/>
-            </td>)
-        }
-        rows.push(<tr>
-            <td>
-                <label name={"option" + i + 1}>{props["Options"][i]["name"]}</label>
-            </td>
-            {options}
-        </tr>)
+  const rows = [];
+  // const scales = [];
+  const scalesRowData = [];
+  var ans = ""
+  if (props["Options"] && props["Options"].length > 0) {
+    // scales = props["Options"][0]["levels"];
+    scalesRowData.push(<td></td>);
+    for (var i = 0; i < props["Options"][0]["levels"].length; i++) {
+      scalesRowData.push(<td>{props["Options"][0]["levels"][i]}</td>);
+    }
+    for (var i = 0; i < props["Options"].length; i++) {
+      const options = []
+      console.log(props["Options"][i]["levels"])
+      for (var j = 0; j < props["Options"][i]["levels"].length; j++) {
+        options.push(<td>
+          <input type="radio" id={i+"_"+j} name={props["Options"][i]["name"]} value={props["Options"][i]["levels"][j]} onChange={(e) => {
+            if (props.onValueChange != undefined) {
+              var ques = getQuestionFromProps(props);
+              var optionIndex = e.target.id.split('_')[0];
+              var key = getQuestionHeaderKey(ques,props["Options"][optionIndex]["name"]);
+              if(ans == ""){
+                ans = e.target.value;
+              }else {
+                ans = ans + "," + e.target.value;
+              }
+              props.onValueChange("Question"+(props.QuestionNo), ans);
+            }
+          }} />
+        </td>)
+      }
+      rows.push(<tr>
+        <td>
+          <label name={"option" + i + 1}>{props["Options"][i]["name"]}</label>
+        </td>
+        {options}
+      </tr>)
     }
   }
-
-  const selectionElements = initialOptions.map((option)=>{
-    return <>
-        <input className="questionCheckBox" type="checkbox" id="option1" name="option" value={option}/>
-        <label className="questionOptionLabel" for="option">{option}</label><br/>
-       </>
-    })
-  const [optionsState, setOptions] = useState(initialOptions);
   return (
     <div className="MultiSelectPreview">
-        {/* <br/>
+      {/* <br/>
         <label className="QuestionEditContentItem">Question Text:</label>
         <br/> */}
-        <p>{props.QuesionNo}. {initialQuestionText}</p>
-        <br/>
-        {selectionElements}
-        {/* <InputGroup className="mb-3">
+      <p>{props.QuestionNo}. {initialQuestionText}</p>
+      <br />
+      <table>
+        <tbody>
+        <tr>{scalesRowData}</tr>
+        {rows}
+        </tbody>
+      </table>
+      {/* <InputGroup className="mb-3">
             <InputGroup.Checkbox aria-label="Checkbox for following text input" />
             <FormControl aria-label="Text input with checkbox" />
         </InputGroup> */}
-        {/* <ChangeableList
+      {/* <ChangeableList
             title="Options : "
             addButtonTitle="Add option"
             list={optionsState}
@@ -79,6 +95,27 @@ function MultiLikertPreview(props) {
         /> */}
     </div>
   );
+}
+
+const getQuestionHeaderKey = (question, optionName = undefined) => {
+  //TODO : check for error.
+  // const question = questions[questionNo - 1];
+  let quesStr = "";
+  if (optionName == undefined) {
+    quesStr = question["QuestionText"];
+  } else {
+    quesStr = question["QuestionText"] + "-" + optionName;
+  }
+  return quesStr;
+}
+
+const getQuestionFromProps = (props) => {
+  return {
+    QuestionType: props.QuestionType,
+    QuestionNo: props.QuestionNo,
+    QuestionText: props.QuestionText,
+    Options: props.Options
+  }
 }
 
 export default MultiLikertPreview;

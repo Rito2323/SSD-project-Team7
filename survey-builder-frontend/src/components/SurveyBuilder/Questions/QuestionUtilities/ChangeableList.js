@@ -2,7 +2,7 @@
  * Will take in a list of strings as input.
  * Will also take in a function from the parent component to update the list in the parent.
  */
- import './ChangeableList.css';
+ import '../../../../App.css';
 
 /**
  * 
@@ -61,7 +61,7 @@ function ChangeableList(props) {
     return (
         <div className="ChangeableList">
             <p className="form-subtitle">{props.title}</p>
-            <button onClick={(e)=>{
+            <button className="clbutton" onClick={(e)=>{
                 list.push("");
                 props.updateList(list);
             }}>{props.addButtonTitle}</button>

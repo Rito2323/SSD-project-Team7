@@ -4,7 +4,7 @@ import '../../../App.css';
 
 /**
   QuestionType: 1,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-  QuesionNo: 1, // Number
+  QuestionNo: 1, // Number
   QuestionText: "", //string
   Options: [ // list of Option
       {
@@ -19,7 +19,6 @@ import '../../../App.css';
 */
 
 function SingleSelectEdit(props) {
-  var initialQuestionText = "";
   var initialOptions = ["","",""];
 
   if(props["Options"] && props["Options"].length > 0) {
@@ -35,18 +34,37 @@ function SingleSelectEdit(props) {
         <br/>
         <label className="QuestionEditContentItem">Question Text:</label>
         <br/>
-        <textarea className="QuestionEditContentItem" value={initialQuestionText}/>
+        <textarea className="QuestionEditContentItem" value={props.QuestionText} onChange={(e)=>{
+          var question = getQuestionFromProps(props);
+          question.QuestionText = e.target.value;
+          props.updateQuestion(question, question.QuestionNo - 1);
+        }}/>
         <br/>
         <ChangeableList
             title="Options : "
             addButtonTitle="Add option"
-            list={optionsState}
+            list={initialOptions}
             updateList={(list)=>{
-              setOptions([...list]);
+              var question = getQuestionFromProps(props);
+              question.Options = list.map((option)=>{return {
+                name : option,
+                levels : [""]
+              }})
+              // setOptions([...list]);
+              props.updateQuestion(question, question.QuestionNo - 1);
             }}
         />
     </div>
   );
+}
+
+const getQuestionFromProps = (props) => {
+  return  {
+    QuestionType: props.QuestionType,
+    QuestionNo: props.QuestionNo,
+    QuestionText: props.QuestionText,
+    Options: props.Options
+  }
 }
 
 export default SingleSelectEdit;

@@ -5,7 +5,7 @@ import '../../../App.css';
 
 /**
   QuestionType: 1,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-  QuesionNo: 1, // Number
+  QuestionNo: 1, // Number
   QuestionText: "", //string
   Options: [ // list of Option
       {
@@ -31,33 +31,57 @@ function MultiSelectPreview(props) {
   }
   const optionsElements = initialOptions.map((option)=>{
     return <>
-        <input className="questionCheckBox" type="checkbox" id="option1" name="option" value={option}/>
-        <label className="questionOptionLabel" for="option">{option}</label><br/>
+        <input className="questionCheckBox" type="checkbox" name={props.QuestionText} value={option} onClick={(e)=>{
+          if (props.onValueChange != undefined) {
+              var ques = getQuestionFromProps(props);
+              var key = getQuestionHeaderKey(ques);
+              var checkBoxes = document.getElementsByName(props.QuestionText);
+              var j=0;
+              var ans = "";
+              for (var k = 0; k<checkBoxes.length; k++) {
+                if(checkBoxes[k].checked) {
+                  if(j!=0) {
+                    ans = ans + ",";
+                  }
+                  ans = ans + checkBoxes[k].value;
+                  j = j + 1;
+                }
+              }
+              // console.log(e.target.value);
+              // console.log(e.target.checked);
+              props.onValueChange("Question"+(props.QuestionNo), ans);
+          }
+        }}/>
+        <label className="questionOptionLabel" for={props.QuestionText}>{option}</label><br/>
        </>
     })
   const [optionsState, setOptions] = useState(initialOptions);
   return (
     <div className="MultiSelectPreview">
-        {/* <br/>
-        <label className="QuestionEditContentItem">Question Text:</label>
-        <br/> */}
-        <p>{props.QuesionNo}. {initialQuestionText}</p>
+        <p>{props.QuestionNo}. {initialQuestionText}</p>
         <br/>
         {optionsElements}
-        {/* <InputGroup className="mb-3">
-            <InputGroup.Checkbox aria-label="Checkbox for following text input" />
-            <FormControl aria-label="Text input with checkbox" />
-        </InputGroup> */}
-        {/* <ChangeableList
-            title="Options : "
-            addButtonTitle="Add option"
-            list={optionsState}
-            updateList={(list)=>{
-              setOptions([...list]);
-            }}
-        /> */}
     </div>
   );
+}
+
+const getQuestionHeaderKey = (question, optionName = undefined) => {
+  let quesStr = "";
+  if (optionName == undefined) {
+      quesStr = question["QuestionText"];
+  } else {
+      quesStr = question["QuestionText"] + "-" + optionName;
+  }
+  return quesStr;
+}
+
+const getQuestionFromProps = (props) => {
+  return  {
+    QuestionType: props.QuestionType,
+    QuestionNo: props.QuestionNo,
+    QuestionText: props.QuestionText,
+    Options: props.Options
+  }
 }
 
 export default MultiSelectPreview;

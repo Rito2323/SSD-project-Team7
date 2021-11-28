@@ -4,52 +4,110 @@
     --btn: #03A9F4;
     --clr: #2D3748
 }
+
 .Transcript{
     text-align: center;
+    height: 100%;
+    /* width:50px; */
+    background-color: rgba(10,10,10,0.5);
+     /* background-color: black;  */
+    margin-top: 0%;
 }
+
 .h1{
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 650;
+    margin-bottom: 45px;
     letter-spacing: -0.02em;
-    color: var(--clr);
+    color:rgba(0,251,0,0.8);
+    font-size: 40px;
 }
 
 .p{
-    font-family: 'Inter', sans-serif;
-    font-size: 20px;
+    font-family:cursive;
+    font-size: 35px;
+    color: seashell;
+    margin-bottom: 50px;
     letter-spacing: -0.01em;
     margin: 0px !important;
 }
 
+.Navigation {
+    text-align: center;
+    background: rgb(221, 216, 216);
+    position: fixed;
+    margin-top: 0vh;
+    height: 10vh;
+    /* box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.425); */
+    box-shadow: 0px 0px 20px 0 #0000002c;
+    width: 100vw;
+    z-index: 20;
+  }
+
+.Navigation button {
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 18px;
+    width: auto;
+    height: 40px;
+    border-radius: 3px;
+    border-style: none;
+    padding: 10px;
+}
+
+.Navigation button:hover {
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(221, 216, 216);
+    border-bottom-width: 2px;
+    text-shadow: 0 0.1rem 0.1rem rgba(25, 25, 25, 0.4);   
+}
+
+.Navigation ul {
+    list-style: none;
+    /* float: right; */
+    display: flex;
+    flex-direction: row;
+}
+
+.Navigation li {
+    margin-top: 1.5vh;
+    padding-right: 20px;
+}
+  
 .msg{
     font-family: 'Inter', sans-serif;
-    font-size: 15px;
+    font-size: 35px;
     letter-spacing: -0.01em;
+    color: white;
 }
-.btn {
+.transcriptButton {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     background-color: white;
     margin: 20px;
-    margin-bottom: 0px !important;
-    padding:15px;
+    margin-bottom: 40px !important;
+    
     border-radius: 5px;
     color: var(--btn);
-    border-width: 1px;
+    border-width: 2px;
     border-color: var(--btn);
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    font-size: .875rem;
+    font-size:2vh;
 }
 
-.btn:hover{
+
+.transcriptButton:hover{
     background-color: var(--btn);
     color: white;
     border-color: var(--btn);
-}
+} 
 
 .dense-btn{
     font-family: 'Inter', sans-serif;
+    height: 50px;
+    /* margin-right: 10 0px; */
+    width: 180px;
     font-weight: 600;
     background-color: var(--btn);
     margin: 20px;
@@ -59,7 +117,7 @@
     color: white;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    font-size: .875rem;
+    font-size: 10px;
     border-color: var(--btn);
 }
 
@@ -67,4 +125,5 @@
     background-color: white;
     color: var(--btn);
     border-color: var(--btn);
-}
+} 
+

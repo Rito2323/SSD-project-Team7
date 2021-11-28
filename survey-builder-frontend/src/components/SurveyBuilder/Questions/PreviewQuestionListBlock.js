@@ -5,7 +5,7 @@ import QuestionPreview from './QuestionPreview';
  *Questions: [
   {
   QuestionType: 1,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-  QuesionNo: 1, // Number
+  QuestionNo: 1, // Number
   QuestionText: "", //string
   Options: [ // list of Option
       {
@@ -24,7 +24,7 @@ import QuestionPreview from './QuestionPreview';
 const getDefaultQuestion = ()=>{
  return {
     QuestionType: 3,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-    QuesionNo: 1, // Number
+    QuestionNo: 1, // Number
     QuestionText: "", //string
     Options: [ // list of Option
         {

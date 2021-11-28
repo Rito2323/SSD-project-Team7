@@ -9,116 +9,311 @@
   overflow-y: scroll;
   margin-top: 0vh;
 }*/
+.survey-text {
+  font-size: 20px;
+  margin: 5vh;
+  color: white;
+  line-height: 30px;
+}
+
+.survey-btn {
+  width: 40%;
+  height: 100%;
+  margin-top: 20vh;
+  background-color: transparent;
+  border: solid #c29525 3px;
+  border-radius: 3px;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 2.5rem;
+  /* text-transform: uppercase; */
+  color: #fff;
+  padding: 2rem;
+  /* margin-left: -40%; */
+  text-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.3vw;
+  cursor: pointer;
+}
+
+.survey-btn:hover {
+  background-color: rgba(194, 149, 37, 0.8);
+  border: none;
+  transition: 200ms;
+  font-size: 3rem;
+  box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+}
+
+.surveyWrapper {
+  background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("./IIITsunset.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  text-align: center;
+  position: relative;
+}
+
+.survey {
+  position: absolute;
+  left: 28%;
+  top: 10%;  
+  padding:6vh;
+  padding-top: 4vh;
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 3px;
+  height: 52vh;
+  width: 40vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vh;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+}
+
+.loginWrapper {
+  background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("./IIITsunset.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  text-align: center;
+  position: relative;
+}
+
+.login {
+  position: absolute;
+  left: 28%;
+  top: 10%;  
+  padding:6vh;
+  padding-top: 4vh;
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 3px;
+  height: 52vh;
+  width: 40vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vh;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+}
+
+.eid {
+  color: white;
+  text-align: left;
+  padding-bottom: 2vh;
+  font-size: 15px;
+}
+
+.loginHeading {
+  text-align: left;
+  color: white;
+  letter-spacing: 0.3vw;
+  font-size: 20px;
+}
+
+.emailInput{
+  width: 95%;
+  padding: 6pt;
+}
+
+.passwordInput{
+  width: 95%;
+  padding: 6pt;
+}
 
 .App table {
-  border-spacing: 0px;
+  border-spacing: 20px;
+}
+
+.btn {
+  width: 50%;
+  background-color: rgb(0, 0, 0, 0);
+  margin-top: 50px;
+  margin-left: 17vw;
+}
+
+.login-button {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: solid #c29525 3px;
+  border-radius: 3px;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 2.5rem;
+  /* text-transform: uppercase; */
+  color: #fff;
+  padding: 2rem;
+  /* margin-left: -40%; */
+  text-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.3vw;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: rgba(194, 149, 37, 0.8);
+  border: none;
+  transition: 200ms;
+  font-size: 3rem;
+  margin-top: -1px;
+  box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
 }
 
 .SurveyBuilder {
-  padding-top: 12vh;
-  background-image: url("IIITsunset.jpg");
+  padding-top: 20vh;
+  background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("./IIITsunset.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   z-index: 10;
+  min-height: 100vh;
 }
 
 .SurveyTitleBlock {
   position: relative;
   height: 15vh;
 /*  margin-top: 20vh;*/
-  background-color: white;
+  background-color: rgb(200, 200, 200, 0.3);
   width: 45vw;
   margin-left: auto;
   margin-right: auto;
   box-shadow: 0px 0px 20px 0 #0000002c;
+  border-radius: 3px;
 }
 
 .SurveyTitleBlock:focus-within {
-  box-shadow: 0px 0px 15px 0 rgba(108, 209, 240, 0.7);
-/*  border-left: rgb(89, 189, 247) solid 4px;*/
+  box-shadow: 0px 0px 15px 0 white;
 }
 
 .QuestionEdit {
   position: relative;
+  width: 45vw;
   height: fit-content;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 30px;
+  padding-bottom: 40px;
   margin-top: 8vh;
-  background-color: white;
-  width: 45vw;
+  background-color: rgb(200, 200, 200, 0.3);
   margin-left: auto;
   margin-right: auto;
   text-align: left;
   box-shadow: 0px 0px 20px 0 #0000002c;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.buttonWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  align-items: center;
 }
 
 .down-button {
-  background-image: url("./icons/down.png");
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("./downIcon.png");
   background-size: contain;
   background-repeat: no-repeat;
   width: 1.5vw;
   height: 1.5vw;
-  margin-left: 0.5vw;
+  margin-left: 2.5vw;
   border-color: rgba(255, 255, 255, 0);
 }
 
 .up-button {
-  background-image: url("./icons/up.png");
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("./upIcon.png");
   background-size: contain;
   background-repeat: no-repeat;
   width: 1.5vw;
   height: 1.5vw;
-  margin-left: 0.5vw;
+  margin-left: 2.5vw;
   border-color: rgba(255, 255, 255, 0);
 }
 
 .del-button {
-  background-image: url("./icons/delete.png");
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("./deleteIcon.png");
   background-size: contain;
   background-repeat: no-repeat;
-  width: 1.5vw;
-  height: 1.5vw;
-  margin-left: 0.5vw;
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-left: 2.5vw;
   border-color: rgba(255, 255, 255, 0);
 }
 
 .add-button {
-  background-image: url("./icons/add.png");
+  background-image: url("./addIcon.png");
   background-color: rgba(245, 245, 245, 0);
   background-size: contain;
   background-repeat: no-repeat;
   width: 3.5vw;
   height: 3.5vw;
   margin-top: 2vh;
-  margin-left: 46.5vw;
-  filter: invert();
-  border-color: rgba(255, 255, 255, 0);
+  border: none;
+  margin-left: 48vw;
+}
+
+.questionNumber {
+  font-size: 20px;
+}
+
+.topmargin {
+  font-size: 16px;
 }
 
 .close-button{
-  width: 1.8vw;
-  height: 1.8vw;
+  background-color: rgba(220, 0, 0, 0.8);
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 1.5vw;
+  height: 1.5vw;
   margin-left: 2vw;
   float: right;
-  border-color: rgba(255, 255, 255, 0);
+  border-style: none;
+  border-radius: 2px;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+}
+
+.submit-button {
+    margin-left: 45vw;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* border-color: rgba(255, 255, 255, 0);
+    border-style: solid;
+    border-width: 3px; */
 }
 
 .survey-tile {
   width: 300px;
   height: 300px;
   margin: 0.5vw;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.548);
   border-radius: 2%;
+  border-style: none;
   position: relative
+}
+
+.survey-tile-add {
+  width: 300px;
+  height: 300px;
+  margin: 0.5vw;
+  background-color: rgba(255, 255, 255, 0);
+  position: relative;
+  border-width: 0px;
+}
+
+.survey-tile-add:hover {
+  width: 300px;
+  height: 300px;
+  margin: 0.5vw;
+  background-color: rgba(246, 249, 250, 0.246);
+  border-radius: 2%;
+  position: relative 
 }
 
 .survey-tile:hover {
   width: 300px;
   height: 300px;
   margin: 0.5vw;
-  background-color: rgb(99, 211, 255);
+  background-color: rgba(194, 149, 37, 0.8);
   border-radius: 2%;
   position: relative
 }
@@ -132,7 +327,7 @@
 }
 
 button:hover {
-  border-color: rgb(0, 0, 0);
+  /* border-color: rgb(0, 0, 0); */
   cursor: pointer;
 }
 
@@ -141,9 +336,28 @@ button:hover {
   margin-right: auto;
   width: fit-content;
 }
+
+.delete-survey-button {
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgba(255, 255, 255, 0);
+  font-size: 30px;
+  color: white;
+}
+
+.delete-survey-button:hover {
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgba(255, 255, 255, 0);
+  font-size: 35px;
+}
+
+.delete-survey-button-cell {
+  vertical-align: top;
+}
+
 .QuestionTypeBox select {
   width: 40vw;
-  height: 3.5vh;
+  height: 5vh;
+  margin-top: 8px;
 }
 
 .QuestionEditContentMaxWidth {
@@ -155,8 +369,8 @@ button:hover {
   max-width: 40vw;
   max-height: 50vh;
   overflow-y: scroll;
-  height: 3.5vh;
-  margin-top: 2vh;
+  height: 4vh;
+  margin-top: 8px;
 }
 
 .leftmargin {
@@ -172,7 +386,7 @@ button:hover {
 }
 
 .QuestionEdit:focus-within {
-  box-shadow: 0px 0px 15px 0 rgb(89, 189, 247, 0.7);
+  box-shadow: 0px 0px 20px 0 white;
 }
 
 
@@ -184,40 +398,195 @@ button:hover {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.MatrixLikert input {
-   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-   width: 20vw;
-   border-radius: 2%;
-   margin-top: 2vh;
-}
-
-.MatrixLikert button {
-  margin: 2px
-}
-
 .SurveyTitleBlock input {
    font-size: xx-large;
-   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-   border-color: white;
+   font-family: Geneva;
    border-style: none;
-   background-color: white;
-   margin-top: 2vh;
-   margin-left: 1vw;
+   background-color: rgb(238, 238, 238, 0);
+   width: 40vw;
+   margin-top: 3.5vh;
+   margin-left: 2vw;
+   color: #fff;
+   text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
 }
 
 .SurveyTitleBlock input:focus {
   outline: none;
 }
 
+.ParticipantView {
+  background: #43C6AC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+  padding: 5vh;
+}
+
 .Navigation {
   text-align: center;
-  background: rgba(245, 245, 245, 0.966);
+  background: rgb(221, 216, 216);
   position: fixed;
   margin-top: 0vh;
   height: 12vh;
-  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.425);
+  /* box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.425); */
+  box-shadow: 0px 0px 20px 0 #0000002c;
   width: 100vw;
   z-index: 20;
+}
+
+.Navigation button {
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 18px;
+  width: auto;
+  height: 40px;
+  border-radius: 3px;
+  border-style: none;
+  padding: 10px;
+}
+
+.Navigation button:hover {
+  border-style: solid;
+  border-color: rgb(221, 216, 216);
+  border-bottom: rgb(194, 149, 37), solid, 3px;
+  text-shadow: 0 0.1rem 0.1rem rgba(25, 25, 25, 0.4);   
+}
+
+.vertical-div {
+  display: flex;
+  flex-flow: column;
+}
+
+.link-icon {
+  filter: invert(1);
+}
+
+.Navigation ul {
+  list-style: none;
+  /* float: right; */
+  display: flex;
+  flex-direction: row;
+}
+
+.Navigation li {
+  margin-top: 1.5vh;
+  padding-right: 20px;
+}
+
+
+.ParticipantView .QuestionEdit {
+  position: relative;
+  width: 45vw;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding-top: 30px;
+  padding-bottom: 40px;
+  margin-top: 8vh;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+  border-radius: 3px;
+  color: rgb(2, 3, 63);
+  border-color: rgb(0, 30, 70);
+  border-width: 0px 0px 10px 0px;
+  border-style: solid;
+}
+
+.ParticipantView .SurveyTitleBlock {
+  position: relative;
+  height: 15vh;
+  /* margin-top: 20vh; */
+  background-color: white;
+  width: 45vw;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+  border-radius: 3px;
+  color: rgb(5, 8, 5);
+  border-color: rgb(0, 30, 70);
+  border-width: 0px 0px 10px 0px;
+  border-style: solid;
+}
+
+/* .ParticipantView {
+  position: relative;
+  height: 15vh;
+  margin-top: 20vh;
+  background-color: white;
+  width: 45vw;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+  border-radius: 3px;
+  color: rgb(5, 8, 5);
+  border-color: rgba(218, 218, 218, 0.555);
+  border-width: 3px;
+  border-style: solid;
+} */
+
+p {
+  margin-bottom: 8px;
+}
+
+.ParticipantView input {
+  color: rgb(5, 8, 5);
+}
+
+.ParticipantView label, .ParticipantView p {
+  font-size: 18px;
+}
+
+.ParticipantView .QuestionEdit textarea {
+  border-color: rgb(0, 0, 0);
+  width: 38vw;
+  border-width: 3px;
+  border-style: solid;
+  font-size: 18px;
+  max-width: 38vw;
+  min-width: 38vw;
+}
+
+.ParticipantView .QuestionEdit td {
+  border-color: rgb(0, 0, 0);
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.ParticipantView .QuestionEdit td input[type=radio]{
+  border-color: rgb(0, 0, 0);
+  margin-left: -0.1vw;
+}
+
+.ParticipantView .submit-button{
+  border-color: rgb(0, 0, 0);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10px;
+  margin-top: 4vh;
+  margin-left: 43vw;
+  margin-right: 40vw;
+  font-size: 18px;
+  padding: 10px;
+  background-color: white;
+}
+
+.ParticipantView .submit-button:hover{
+  border-color: rgb(0, 13, 58);
+  border-width: 4px;
+  border-style: solid;
+  border-radius: 10px;
+  margin-top: 4vh;
+  margin-left: 43vw;
+  margin-right: 40vw;
+  font-size: 18px;
+  padding: 10px;
+  background-color: white;
+}
+
+.ParticipantView ::selection {
+  color: rgb(255, 255, 255);
+  background: rgb(0, 21, 71);
 }
 
 .survey-tile-list {
@@ -243,15 +612,90 @@ button:hover {
   color: white;
 }
 
-.SaveButton, .DiscardButton {
-  margin: 100px;
-  margin-left: 350px;
+.surveyTitleInTile {
+  font-family: Roboto, 'Sans serif';
+  margin-top: 30px;
+  padding-left: 12%;
+  color: white;
+  font-size: 20px;
+}
+
+.PreviewEditButton {
+  font-family: Geneva;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+  margin-top:50px;
+  margin-left: 37%;
+  margin-bottom: 100px;
   padding: 10px;
-  border-radius: 8px;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.384);
-  background-color: white;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+  background-color: rgb(200, 200, 200, 0.6);
+  color: white;
+  width: 120px;
+}
+
+.SaveButton {
+  font-family: Geneva;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+  margin-top:50px;
+  margin-left: 3%;
+  margin-bottom: 100px;
+  padding: 10px;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+  background-color: rgb(200, 200, 200, 0.6);
+  color: white;
+  width: 120px;
+} 
+
+.DiscardButton {
+  font-family: Geneva;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.4);
+  margin-top:50px;
+  margin-left: 3%;
+  margin-bottom: 100px;
+  padding: 10px;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+  background-color: rgb(200, 200, 200, 0.6);
+  color: white;
+  width: 120px;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.ChangeableList {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 40vw;
+    height: fit-content;
+    font-size: calc(10px + 1vmin);
+}
+
+.ChangeableList input {
+    font-size: calc(10px + 1vmin);
+    width: 25vw;
+    margin-top: 1vw;
+    color: #555;
+    padding: 4pt;
+}
+
+.clbutton {
+  width: 120px;
+  height: 40px;
+  box-shadow: 0px 0px 20px 0 #0000002c;
+  background-color: rgb(200, 200, 200, 0.6);
+  color: white;
+}
+
+.ChangeableList button {
+  font-size: calc(10px + 1vmin);
+  border: none;
+  border-radius: 3px;
 }

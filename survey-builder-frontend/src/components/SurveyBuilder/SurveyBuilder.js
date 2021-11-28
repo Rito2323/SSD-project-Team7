@@ -9,18 +9,20 @@ import Navigation from '../Navigation';
 
 
 const backendUri = "http://localhost:3000/";
+const frontendUri = "http://localhost:3001/";
+
 
 const getAllSurveys = async (userEmail) => {
   const uri = backendUri + "surveys";
   var response = await fetch(uri)
   var surveys = await response.json();
-  var surveysForUser = surveys.filter((survey) => survey.CreatedBy == userEmail);
-  console.log("SURVEYS FETCHED For User : ");
-  console.log(surveysForUser);
-  return surveysForUser;
+  // var surveysForUser = surveys.filter((survey) => survey.CreatedBy == userEmail);
+  // console.log("SURVEYS FETCHED For User : ");
+  // console.log(surveys);
+  return surveys;
 }
 
-const getData = async () => {
+const getData = () => {
 
   // var response = await fetch('http://localhost:3000/surveys')
   // var question = await response.json();
@@ -30,7 +32,7 @@ const getData = async () => {
     Questions: [
     {
       QuestionType: 4,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-      QuesionNo: 1, // Number
+      QuestionNo: 1, // Number
       QuestionText: "This is a dummy question", //string
       Options: [ // list of Option
           {
@@ -45,7 +47,7 @@ const getData = async () => {
       },
       {
         QuestionType: 3,  // Number: 1-Textbased, 2-Single, 3-Multi, 4-Matrix
-        QuesionNo: 2, // Number
+        QuestionNo: 2, // Number
         QuestionText: "This is a dummy question", //string
         Options: [ // list of Option
             {
@@ -61,24 +63,65 @@ const getData = async () => {
   ]}
 }
 
-const updateQuestionDataInServer = (questionData, currentSurveyNo) => {
+const addSurveyDataInServer = (data, oldSurvey, setIsSurveySelected) => {
   // Send update request
-  const uri = backendUri + "surveys/" + currentSurveyNo;
+  const uri = backendUri + "add_survey";
+  console.log("oldSurvey");  
+  console.log(oldSurvey);  
+  console.log("data");  
+  console.log(data);
+  const newSurveyBody = {
+    ...oldSurvey,
+    SurveyNo: oldSurvey.SurveyNo,
+    SurveyTitle: data.SurveyTitle,
+    Questions : data.QuestionData["Questions"]
+  }
+  console.log("NEW QUESTION");
+  console.log(newSurveyBody);
+  fetch(uri, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({...newSurveyBody})
+  }).then((res)=>{
+    if(res.status == 200) {
+      alert("New Survey Saved Successfully!\n Survey url : " + frontendUri + "survey/" + oldSurvey["SurveyNo"]);
+      setIsSurveySelected(false);
+    } else {
+      alert("There was some problem while saving the survey! Please make sure all the details are filled.");      
+    }
+
+}).catch(()=>{alert("There was some problem while saving the survey! Please make sure all the details are filled.");})
+}
+
+const updateQuestionDataInServer = (data, oldSurvey, setIsSurveySelected) => {
+  // Send update request
+  console.log("Inside updateQuestionDataInServer")
+  const uri = backendUri + "update/survey/" + oldSurvey.SurveyNo;
+  const newSurveyBody = {
+    ...oldSurvey,
+    SurveyNo: oldSurvey.SurveyNo,
+    SurveyTitle: data.SurveyTitle,
+    Questions : data.QuestionData["Questions"]
+  }
+  console.log("NEW QUESTION");
+  console.log(newSurveyBody);
   fetch(uri, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      SurveyNo : "5",
-      SurveyTitle : "IIITH zoom call meetings",
-      CreatedBy : "surveydeveloper2@iiit.ac.in",
-      Questions : questionData["Questions"]
-    })
-  })
+    body: JSON.stringify({...newSurveyBody})
+  }).then(()=>{alert("Saved Successfully!\n Survey url : " + frontendUri + "survey/" + oldSurvey["SurveyNo"]);
+  setIsSurveySelected(false);
+})
 }
 
 const getNewSurveyNo = (surveys) => {
+    // Calculating new survey no.
+    console.log("Calculating new survey no.");
+    console.log(surveys);
     var max = 0;
     for(var i = 0; i < surveys.length; i++) {
       if(surveys[i].SurveyNo > max) {
@@ -89,72 +132,105 @@ const getNewSurveyNo = (surveys) => {
 }
 
 function SurveyBuilder(props) {
-  const [value, setValue] = useState("Untitled Form");
+  const [titleValue, setTitleValue] = useState(props.SurveyTitle);
   const [questionData, setQuestionData] = useState({Questions: []});
   const [surveys, setSurveys] = useState([]);
   const [mode, setMode] = useState("EDIT");
   const [isSurveySelected, setIsSurveySelected] = useState(false);
-  const [currentSurveyNo, setCurrentSurveyNo] = useState(0);
+  const [currentSurvey, setCurrentSurvey] = useState({});
+  const [isNewSurvey, setIsNewSurvey] = useState(false);
+  const [rerender_key, setReRenderKey] = useState(1);
 
-  const userName = "user1@students.iiit.ac.in"; // NEED to get this from login
+  const userName = localStorage.getItem("currentUser"); // NEED to get this from login
 
   useEffect(() => {
-  if (surveys.length == 0) {
-      getDataFromBackEnd();
-    }
-  }, []);
+    if (surveys.length == 0) {
+        getDataFromBackEnd();
+      }
+    }, []);
+
+  useEffect(() => {
+    // if (surveys.length == 0) {
+     getDataFromBackEnd();
+    // }
+  }, [surveys, isSurveySelected]);
 
   const getDataFromBackEnd = async () => {
     var surveyData = await getAllSurveys(userName);
     setSurveys(surveyData);
-    var data = await getData();
-    console.log(data);
-    setQuestionData(data);
   }
 
   const newSurveyNo = getNewSurveyNo(surveys);
 
   const surveyTiles = [];
 
+  const rerender = () => {
+    setReRenderKey(rerender_key + 1);
+  }
+
   const createSurveyTile = <SurveyTile newSurveyNo={newSurveyNo}
   setIsSurveySelected={setIsSurveySelected}
   setQuestionData={setQuestionData}
-  setCurrentSurveyNo={setCurrentSurveyNo}/>
+  setTitle={setTitleValue}
+  setCurrentSurvey={setCurrentSurvey}
+  setIsNewSurvey={setIsNewSurvey}
+  currentUser={userName}
+  rerender={rerender}/>
   surveyTiles.push(<li>{createSurveyTile}</li>)
 
-  for(var i = 0; i < surveys.length; i++) {
-    const surveyTileComponent = <SurveyTile {...surveys[i]}
+  const filteredSurveys = surveys.filter((survey) => survey.CreatedBy == userName);
+
+  for(var i = 0; i < filteredSurveys.length; i++) {
+    const surveyTileComponent = <SurveyTile survey={{...filteredSurveys[i]}}
     setIsSurveySelected={setIsSurveySelected}
     setQuestionData={setQuestionData}
-    setCurrentSurveyNo={setCurrentSurveyNo}/>;
+    setTitle={setTitleValue}
+    setCurrentSurvey={setCurrentSurvey}
+    setIsNewSurvey={setIsNewSurvey}
+    currentUser={userName}
+    rerender={rerender}/>;
     surveyTiles.push(<li>{surveyTileComponent}</li>)
   }
 
   console.log("Inside SurveyBuilder")
   console.log(questionData)
-  // var questionData = ;
   return (
     <>
+    {/* <Modal show={true} onHide={()=>{}}>
+        <Modal.Header closeButton>
+          <Modal.Title>Saved Successfully!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Survey Link To Share: {frontendUri + "survey/"+ currentSurvey["SurveyNo"]}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={()=>{}}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={()=>{}}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal> */}
     <Navigation/>
-    <div className="App SurveyBuilder">
+    <div key={rerender_key} className="App SurveyBuilder">
        {!isSurveySelected ? <>
         <ul className="survey-tile-list">
           {surveyTiles}
         </ul>
-       </> : 
+       </> :
        <>
         {mode == "EDIT" ? <>
-        <SurveyTitleBlock titleVal={value} handleTitleChange={
-          (e) => setValue(e.target.value)
+        <SurveyTitleBlock titleVal={titleValue} handleTitleChange={
+          (e) => setTitleValue(e.target.value)
         }/>
         <QuestionEditListBlock {...questionData} setQuestionData={setQuestionData}/></>
         : <>
-          <PreviewSurveyTitleBlock titleVal={value} handleTitleChange={
-          (e) => setValue(e.target.value)
+          <PreviewSurveyTitleBlock titleVal={titleValue} handleTitleChange={
+          (e) => setTitleValue(e.target.value)
           }/>
             <PreviewQuestionListBlock {...questionData} setQuestionData={setQuestionData}/>
         </>
         }
+        <div buttonWrapper>
         <button className="PreviewEditButton" onClick={() => {
           if(mode == "EDIT") {
             setMode("PREVIEW")
@@ -162,10 +238,19 @@ function SurveyBuilder(props) {
             setMode("EDIT")
           }
         }}>{mode == "PREVIEW" ? "EDIT" : "PREVIEW"}</button>
-        <button className="SaveButton" onClick={(e) => {updateQuestionDataInServer(questionData)}}>SAVE</button>
+        <button className="SaveButton" onClick={(e) => {
+          if(isNewSurvey) {
+            addSurveyDataInServer({SurveyTitle: titleValue, QuestionData: questionData}, currentSurvey, setIsSurveySelected);
+            rerender();
+          }
+          else {
+            updateQuestionDataInServer({SurveyTitle: titleValue, QuestionData: questionData}, currentSurvey, setIsSurveySelected);
+            rerender();
+          }
+          }}>SAVE</button>
         <button className="DiscardButton" onClick={(e)=> {
           setIsSurveySelected(false);
-        }}>DISCARD</button>
+        }}>DISCARD</button></div>
        </>}
     </div>
     </>
