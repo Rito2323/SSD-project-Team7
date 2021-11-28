@@ -21,7 +21,6 @@ code {
 }
 
 .card {
-  background-color: #fff;
   border-radius: 0.5rem;
   width: 44vw;
   height: auto;
@@ -34,9 +33,9 @@ code {
 }
 
 .innerCard {
-  border: solid 2px #c6c6c6;
   padding: 2vw;
-  background-color: #f0f0f0;
+  font-size: 16px;
+  margin-left: 0.8vw;
 }
 
 .Question-heading {
@@ -47,6 +46,7 @@ code {
 .innerCard textarea{
   width: 97%;
   height: 40vh;
+  background-color: #f0f0f0;
 }
 
 .buttons {

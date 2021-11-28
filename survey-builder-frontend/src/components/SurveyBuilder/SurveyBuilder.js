@@ -209,6 +209,7 @@ function SurveyBuilder(props) {
             <PreviewQuestionListBlock {...questionData} setQuestionData={setQuestionData}/>
         </>
         }
+        <div buttonWrapper>
         <button className="PreviewEditButton" onClick={() => {
           if(mode == "EDIT") {
             setMode("PREVIEW")
@@ -226,7 +227,7 @@ function SurveyBuilder(props) {
           }}>SAVE</button>
         <button className="DiscardButton" onClick={(e)=> {
           setIsSurveySelected(false);
-        }}>DISCARD</button>
+        }}>DISCARD</button></div>
        </>}
     </div>
     </>
