@@ -79,11 +79,11 @@ function ParticipantView(props) {
             for (var i = 0; i < noOfQues; i++) {
                 if (survey["Questions"][i]["QuestionType"] == 4) {
                     for (var j = 0; j < survey["Questions"][i]["Options"].length; j++) {
-                        const quesHeaderKey = getQuestionHeaderKey(survey["Questions"][i], survey["Questions"][i]["Options"][j]["name"]);
+                        const quesHeaderKey = "Question" + (i+1) + survey["Questions"][i]["Options"][j]["name"];
                         answers[quesHeaderKey] = "";
                     }
                 } else {
-                    const quesHeaderKey = getQuestionHeaderKey(survey["Questions"][i]);
+                    const quesHeaderKey = "Question" + survey["Questions"][i];
                     answers[quesHeaderKey] = "";
                 }
             }
